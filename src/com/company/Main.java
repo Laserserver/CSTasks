@@ -11,12 +11,16 @@ public class Main {
     private static void Menu()
     {
         Scanner s = new Scanner(System.in);
+        Operator op = new Operator();
+        GroupRedactor gr = new GroupRedactor(op);
+        StudentRedactor sr = new StudentRedactor(op);
+
         while (true)
         {
             System.out.println("ИНФОРМАТИКА");
 
             System.out.println("Выберите пункт: ");
-            System.out.println("     1. Редактор списка групп");
+            System.out.println("     1. Редактор курсов и групп");
             System.out.println("     2. Редактор оценок");
             System.out.println("     3. Выход");
             if(!s.hasNextInt())
@@ -29,9 +33,11 @@ public class Main {
             switch (option)
             {
                 case 1:
-                    break;
+                    gr.Start();
+                    continue;
                 case 2:
-                    break;
+                    sr.Start();
+                    continue;
                 case 3:
                     System.out.println("Выходим.");
                     break;

@@ -9,7 +9,6 @@ public class Operator {
     private List<Course> _courses;
     private Course _selectedCourse;
     private Group _selectedGroup;
-    private Student _selectedStudent;
     private Scanner s;
     public Operator()
     {
@@ -19,14 +18,25 @@ public class Operator {
 
     public void GetCourses()
     {
-        IntStream.range(1, _courses.size()).forEach(
+        System.out.println(_courses.size());
+        IntStream.range(1, _courses.size() + 1).forEach(
                 num -> System.out.println(_courses.get(num - 1).CourseNum + " курс.")
         );
     }
 
-    public void SelectCourse(int num)
+    public Boolean SelectCourse(int num)
     {
-        _selectedCourse = _courses.get(num - 1);
+        if(num <= _courses.size())
+        {
+            _selectedCourse = _courses.get(num - 1);
+            return true;
+        }
+        return false;
+    }
+
+    public void CreateCourse()
+    {
+        _courses.add(new Course(_courses.size()+1));
     }
 
     public void GetCourseGroups()
@@ -34,9 +44,14 @@ public class Operator {
         _selectedCourse.GetGroupsList();
     }
 
-    public void SelectGroup(int num)
+    public Boolean SelectGroup(int num)
     {
-        _selectedGroup = _selectedCourse.SelectGroup(num);
+        if(num <= _selectedCourse.GroupCount)
+        {
+            _selectedGroup = _selectedCourse.SelectGroup(num);
+            return true;
+        }
+        return false;
     }
 
     public void GetGroupStudents()
@@ -44,15 +59,15 @@ public class Operator {
         _selectedGroup.GetList();
     }
 
-    public void SelectStudent(int num)
+    public Student SelectStudent(int num)
     {
-        _selectedStudent = _selectedGroup.SelectStudent(num);
+        if(num > 0 && num <= _selectedGroup.StudentCount)
+            return _selectedGroup.SelectStudent(num);
+        System.out.println("Неверный выбор.");
+        return null;
     }
 
-    public void GetStudentMarks()
-    {
-        _selectedStudent.GetMarks();
-    }
+
 
     //===================
 
@@ -81,10 +96,5 @@ public class Operator {
     public void DeleteStudent(int num)
     {
         _selectedGroup.DeleteStudent(num);
-    }
-
-    public void SetStudentMark(int task)
-    {
-        _selectedStudent.SetMark(task);
     }
 }

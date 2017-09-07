@@ -7,7 +7,7 @@ public class Course {
 
     private List<Group> _groups;
     public final int CourseNum;
-    private int _groupCount;
+    public int GroupCount;
 
     public Course(int num)
     {
@@ -17,12 +17,12 @@ public class Course {
 
     public void CreateGroup()
     {
-        _groups.add(new Group(++_groupCount, CourseNum));
+        _groups.add(new Group(++GroupCount, CourseNum));
     }
 
     public void GetGroupsList()
     {
-        IntStream.range(1, _groups.size()).forEach(
+        IntStream.range(1, _groups.size() + 1).forEach(
                 num -> System.out.println("    " + _groups.get(num - 1).Number + " группа.")
         );
     }
@@ -36,7 +36,7 @@ public class Course {
 
     public void DeleteGroup(int num)
     {
-        IntStream.range(1, _groups.size()).forEach(
+        IntStream.range(1, _groups.size() + 1).forEach(
                 nbr -> {
                     if(_groups.get(nbr - 1).Number == num) {
                         _groups.remove(nbr - 1);
