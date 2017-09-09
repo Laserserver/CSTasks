@@ -25,7 +25,7 @@ public class Group {
 
     public void GetList()
     {
-        IntStream.range(1, _students.size()).forEach(
+        IntStream.range(1, _students.size() + 1).forEach(
                 num -> System.out.println("        " + num + ". " + _students.get(num-1).Name + ' ' + _students.get(num-1).Surname)
         );
     }

@@ -6,24 +6,29 @@ public class Student {
 
     public final String Name;
     public final String Surname;
-    private Boolean[] _marks;
+    private boolean[] _marks;
 
     public Student(String name, String surname)
     {
         Name = name;
         Surname = surname;
-        _marks = new Boolean[3];
+        _marks = new boolean[3];
     }
 
-    public void SetMark(int num)
+    public void SetMark(int num, boolean state)
     {
-        _marks[num - 1] = true;
+        _marks[num - 1] = state;
     }
 
     public void GetMarks()
     {
         IntStream.range(1, 4).forEach(
-                nbr -> System.out.println(nbr + ". " + (_marks[nbr-1] ? "Сдал" : "Не сдал"))
+                nbr -> System.out.println(nbr + ". " + (_marks[nbr-1] ? "Сдано" : "Не сдано"))
         );
+    }
+
+    public boolean GetMark(int num)
+    {
+        return _marks[num - 1];
     }
 }

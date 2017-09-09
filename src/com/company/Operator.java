@@ -18,19 +18,19 @@ public class Operator {
 
     public void GetCourses()
     {
-        System.out.println(_courses.size());
         IntStream.range(1, _courses.size() + 1).forEach(
                 num -> System.out.println(_courses.get(num - 1).CourseNum + " курс.")
         );
     }
 
-    public Boolean SelectCourse(int num)
+    public boolean SelectCourse(int num)
     {
         if(num <= _courses.size())
         {
             _selectedCourse = _courses.get(num - 1);
             return true;
         }
+        System.out.println("Ошибка при выборе курса.");
         return false;
     }
 
@@ -44,13 +44,14 @@ public class Operator {
         _selectedCourse.GetGroupsList();
     }
 
-    public Boolean SelectGroup(int num)
+    public boolean SelectGroup(int num)
     {
         if(num <= _selectedCourse.GroupCount)
         {
             _selectedGroup = _selectedCourse.SelectGroup(num);
             return true;
         }
+        System.out.println("Ошибка при выборе группы.");
         return false;
     }
 

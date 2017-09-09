@@ -36,7 +36,7 @@ public class GroupRedactor extends Redactor {
         System.out.println("СОЗДАНИЕ КУРСА: ");
         System.out.println("    Присутствующие курсы: ");
         _op.GetCourses();
-        System.out.print("Создать новый? Y\\N >>");
+        System.out.print("Создать новый? Y\\N >> ");
         String flag = s.next();
         if(flag.toLowerCase().equals("y")){
             _op.CreateCourse();
@@ -49,9 +49,6 @@ public class GroupRedactor extends Redactor {
     private void _CourseChange()
     {
         System.out.println("ИЗМЕНЕНИЕ КУРСА: ");
-        System.out.println("    Присутствующие курсы: ");
-        _op.GetCourses();
-        System.out.print("Выберите курс >> ");
         if(!_SelectCourse())
             return;
         else
@@ -92,7 +89,7 @@ public class GroupRedactor extends Redactor {
     private void _GroupCreate()
     {
         System.out.println("Создание группы для этого курса: ");
-        System.out.print("Вы действительно хотите создать группу? Y\\N >>");
+        System.out.print("Вы действительно хотите создать группу? Y\\N >> ");
         String flag = s.next();
         if(flag.toLowerCase().equals("y")){
             _op.CreateGroup();
@@ -134,11 +131,14 @@ public class GroupRedactor extends Redactor {
     private void _StudentNew()
     {
         System.out.println("Добавление студента: ");
-        System.out.println("Введите имя >> ");
+        System.out.print("Введите имя >> ");
         String name = s.nextLine();
-        System.out.println("Введите фамилию >> ");
-        String surname = s.nextLine();
-        _op.InsertStudent(name, surname);
+        if(s.hasNext())
+        {
+            System.out.print("Введите фамилию >> ");
+            String surname = s.nextLine();
+            _op.InsertStudent(name, surname);
+        }
     }
 
     private void _StudentDelete()

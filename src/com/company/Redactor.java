@@ -23,7 +23,7 @@ public class Redactor {
         return s.nextInt();
     }
 
-    protected Boolean _SelectCourse()
+    protected boolean _SelectCourse()
     {
         System.out.println("Выберите курс: ");
         _op.GetCourses();
@@ -34,7 +34,7 @@ public class Redactor {
             return _op.SelectCourse(option);                //Метод разберется, если больше, чем курсов
     }
 
-    protected Boolean _SelectGroup()                        //Если не выбран курс, то сюда пускать не должно.
+    protected boolean _SelectGroup()                        //Если не выбран курс, то сюда пускать не должно.
     {
         System.out.println("Выберите группу: ");
         _op.GetCourseGroups();
