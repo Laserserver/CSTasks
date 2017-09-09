@@ -1,4 +1,6 @@
 package com.company;
+import com.sun.javafx.image.BytePixelSetter;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -37,7 +39,11 @@ public class Group {
 
     public void DeleteStudent(int number)
     {
-        _students.remove(number - 1);
-        StudentCount--;
+        if(_students.size() < 1)
+            System.out.println("Студентов уже нет.");
+        else {
+            _students.remove(number - 1);
+            StudentCount--;
+        }
     }
 }

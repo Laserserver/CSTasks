@@ -36,14 +36,17 @@ public class Course {
 
     public void DeleteGroup(int num)
     {
-        IntStream.range(1, _groups.size() + 1).forEach(
-                nbr -> {
-                    if(_groups.get(nbr - 1).Number == num) {
-                        _groups.remove(nbr - 1);
-                        return;
+        if(_groups.size() < 1)
+            System.out.println("Групп уже нет");
+        else
+            IntStream.range(1, _groups.size() + 1).forEach(
+                    nbr -> {
+                        if(_groups.get(nbr - 1).Number == num) {
+                            _groups.remove(nbr - 1);
+                            return;
+                        }
                     }
-                }
-        );
+            );
         System.out.println("Такой группы нет.");
     }
 }

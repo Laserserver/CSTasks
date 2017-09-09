@@ -102,7 +102,6 @@ public class GroupRedactor extends Redactor {
     private void _GroupChange()
     {
         System.out.println("Изменение группы: ");
-        System.out.println("Выберите группу: ");
         if(!_SelectGroup())
             return;
         System.out.println("Список студентов: ");
@@ -132,13 +131,11 @@ public class GroupRedactor extends Redactor {
     {
         System.out.println("Добавление студента: ");
         System.out.print("Введите имя >> ");
+        s.nextLine();
         String name = s.nextLine();
-        if(s.hasNext())
-        {
-            System.out.print("Введите фамилию >> ");
-            String surname = s.nextLine();
-            _op.InsertStudent(name, surname);
-        }
+        System.out.print("Введите фамилию >> ");
+        String surname = s.nextLine();
+        _op.InsertStudent(name, surname);
     }
 
     private void _StudentDelete()
