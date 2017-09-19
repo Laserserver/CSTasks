@@ -4,15 +4,16 @@ import java.util.Scanner;
 
 public class Redactor {
 
-    protected Operator _op;
+    protected Operator op;
     protected Scanner s;
+
     public Redactor(Operator operator)
     {
-        _op = operator;
+        op = operator;
         s = new Scanner(System.in);
     }
 
-    protected int _Selection()
+    protected int invokeSelection()
     {
         if(!s.hasNextInt())
         {
@@ -23,25 +24,19 @@ public class Redactor {
         return s.nextInt();
     }
 
-    protected boolean _SelectCourse()
+    protected boolean selectCourse()
     {
         System.out.println("Выберите курс: ");
-        _op.GetCourses();
-        int option = _Selection();
-        if(option < 1)
-            return false;                                   //Тут нафиг шлем, если вообще не инт введен.
-        else
-            return _op.SelectCourse(option);                //Метод разберется, если больше, чем курсов
+        op.getCourses();
+        int option = invokeSelection();
+        return option >= 1 && op.selectCourse(option);
     }
 
-    protected boolean _SelectGroup()                        //Если не выбран курс, то сюда пускать не должно.
+    protected boolean selectGroup()                        //Если не выбран курс, то сюда пускать не должно.
     {
         System.out.println("Выберите группу: ");
-        _op.GetCourseGroups();
-        int option = _Selection();
-        if(option < 1)
-            return false;
-        else
-            return _op.SelectGroup(option);
+        op.getCourseGroups();
+        int option = invokeSelection();
+        return option >= 1 && op.selectGroup(option);
     }
 }

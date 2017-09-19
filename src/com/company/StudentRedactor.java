@@ -2,50 +2,50 @@ package com.company;
 
 public class StudentRedactor extends Redactor {
 
-    private Student _student;
+    private Student student;
 
     public StudentRedactor(Operator operator)
     {
         super(operator);
     }
 
-    public void Start()
+    public void start()
     {
-        if(_SelectCourse() && _SelectGroup())
-            _SelectStudent();
+        if(selectCourse() && selectGroup())
+            selectStudent();
     }
 
-    private void _SelectStudent()
+    private void selectStudent()
     {
         System.out.println("Выберите студента: ");
-        _op.GetGroupStudents();
-        int option = _Selection();                      //Даже если -1, все равно передаем в SelectCourse
-        _student = _op.SelectStudent(option);           //Там метод разберется
-           if(_student != null)
-               _ShowInfo();
+        op.getGroupStudents();
+        int option = invokeSelection();                      //Даже если -1, все равно передаем в SelectCourse
+        student = op.selectStudent(option);           //Там метод разберется
+           if(student != null)
+               showInfo();
 
     }
 
-    private void _ShowInfo()
+    private void showInfo()
     {
-        System.out.println("Студент: " + _student.Name + ' ' + _student.Surname);
+        System.out.println("Студент: " + student.getName() + ' ' + student.getSurname());
         System.out.println("Оценки: ");
-        _student.GetMarks();
+        student.getMarks();
         System.out.print("Выберите этап >> ");
-        int option = _Selection();
+        int option = invokeSelection();
         while(option < 1)
         {
             System.out.println("Неверный выбор этапа.");
         }
-        System.out.println("Этап " + option + ". Текущее состояние: " + (_student.GetMark(option) ? "Сдано" : "Не сдано"));
+        System.out.println("Этап " + option + ". Текущее состояние: " + (student.getMark(option) ? "Сдано" : "Не сдано"));
         System.out.println("Как изменить?");
         System.out.println("    1. Сдано");
         System.out.println("    2. Не сдано");
-        int secoption = _Selection();
-        while(secoption < 1)
+        int secondaryOption = invokeSelection();
+        while(secondaryOption < 1)
         {
             System.out.println("Неверный выбор состояния.");
         }
-        _student.SetMark(option, secoption == 1 ? true : false);
+        student.setMark(option, secondaryOption == 1);
     }
 }

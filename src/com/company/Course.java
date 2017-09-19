@@ -5,48 +5,63 @@ import java.util.stream.IntStream;
 
 public class Course {
 
-    private List<Group> _groups;
-    public final int CourseNum;
-    public int GroupCount;
+    private List<Group> groups;
+    private final int courseNum;
+    private int groupCount;
+
+    public int getCourseNum(){
+        return courseNum;
+    }
+
+    public int getGroupSize(){      //Возвращает фактическое количество групп
+        return groups.size();
+    }
+
+    public int getGroupCount(){     //Возвращает последний номер группы
+        return groupCount;
+    }
 
     public Course(int num)
     {
-        _groups = new LinkedList<>();
-        CourseNum = num;
+        groups = new LinkedList<>();
+        courseNum = num;
     }
 
-    public void CreateGroup()
+    public void createGroup()
     {
-        _groups.add(new Group(++GroupCount, CourseNum));
+        groups.add(new Group(++groupCount, courseNum));
     }
 
-    public void GetGroupsList()
+    public void getGroupsList()
     {
-        IntStream.range(1, _groups.size() + 1).forEach(
-                num -> System.out.println("    " + _groups.get(num - 1).Number + " группа.")
+        IntStream.range(1, groups.size() + 1).forEach(
+                num -> System.out.println("    " + groups.get(num - 1).getNumber() + " группа.")
         );
     }
 
-    public Group SelectGroup(int num) {
+    public Group selectGroup(int num) {
         int ptr = 0;
-        while (_groups.get(ptr).Number != num)
+        while (ptr < groups.size() && groups.get(ptr).getNumber() != num)       //Пока указатель меньше фактического количества
             ptr++;
-        return _groups.get(ptr);
+        if(ptr == groups.size())        //Если прошлись, но не нашли - бросаем null, метод увидит
+            return null;
+        return groups.get(ptr);
     }
 
-    public void DeleteGroup(int num)
+    public void deleteGroup(int num)
     {
-        if(_groups.size() < 1)
+        if(groups.size() < 1)
             System.out.println("Групп уже нет");
-        else
-            IntStream.range(1, _groups.size() + 1).forEach(
-                    nbr -> {
-                        if(_groups.get(nbr - 1).Number == num) {
-                            _groups.remove(nbr - 1);
-                            return;
-                        }
-                    }
-            );
-        System.out.println("Такой группы нет.");
+        else {
+            int ptr = 0;
+            while (ptr < groups.size() && groups.get(ptr).getNumber() != num)
+                ptr++;
+            if(ptr != groups.size()) {
+                groups.remove(ptr);
+                groupCount--;
+            }
+            else
+                System.out.println("Такой группы нет.");
+        }
     }
 }

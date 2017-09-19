@@ -1,5 +1,4 @@
 package com.company;
-import com.sun.javafx.image.BytePixelSetter;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,43 +6,48 @@ import java.util.stream.IntStream;
 
 public class Group {
 
-    private final List<Student> _students;
-    public final int Number;
-    public final int Course;
-    public int StudentCount;
+    private final List<Student> students;
+    private final int number;
+    private final int course;   //<-- неизвестно, зачем, но из-за задания сделано.
 
     public Group(int num, int course)
     {
-        Number = num;
-        Course = course;
-        _students = new LinkedList<>();
+        number = num;
+        students = new LinkedList<>();
+        this.course = course;
     }
 
-    public void InsertStudent(String name, String surname)
-    {
-        _students.add(new Student(name, surname));
-        StudentCount++;
+    public int getNumber(){
+        return number;
     }
 
-    public void GetList()
+    public int getStudentCount(){
+        return students.size();
+    }
+
+    public void insertStudent(String name, String surname)
     {
-        IntStream.range(1, _students.size() + 1).forEach(
-                num -> System.out.println("        " + num + ". " + _students.get(num-1).Name + ' ' + _students.get(num-1).Surname)
+        students.add(new Student(name, surname));
+    }
+
+    public void getList()
+    {
+        IntStream.range(1, students.size() + 1).forEach(
+                num -> System.out.println("        " + num + ". " + students.get(num-1).getName() + ' ' + students.get(num-1).getSurname())
         );
     }
 
-    public Student SelectStudent(int number)
+    public Student selectStudent(int number)
     {
-        return _students.get(number - 1);
+        return students.get(number - 1);
     }
 
-    public void DeleteStudent(int number)
+    public void deleteStudent(int number)
     {
-        if(_students.size() < 1)
+        if(students.size() < 1)
             System.out.println("Студентов уже нет.");
         else {
-            _students.remove(number - 1);
-            StudentCount--;
+            students.remove(number - 1);
         }
     }
 }

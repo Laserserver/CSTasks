@@ -4,31 +4,39 @@ import java.util.stream.IntStream;
 
 public class Student {
 
-    public final String Name;
-    public final String Surname;
-    private boolean[] _marks;
+    private final String name;
+    private final String surname;
+    private boolean[] marks;
+
+    public String getName(){
+        return name;
+    }
+
+    public String getSurname(){
+        return surname;
+    }
 
     public Student(String name, String surname)
     {
-        Name = name;
-        Surname = surname;
-        _marks = new boolean[3];
+        this.name = name;
+        this.surname = surname;
+        marks = new boolean[3];
     }
 
-    public void SetMark(int num, boolean state)
+    public void setMark(int num, boolean state)
     {
-        _marks[num - 1] = state;
+        marks[num - 1] = state;
     }
 
-    public void GetMarks()
+    public void getMarks()
     {
         IntStream.range(1, 4).forEach(
-                nbr -> System.out.println(nbr + ". " + (_marks[nbr-1] ? "Сдано" : "Не сдано"))
+                nbr -> System.out.println(nbr + ". " + (marks[nbr-1] ? "Сдано" : "Не сдано"))
         );
     }
 
-    public boolean GetMark(int num)
+    public boolean getMark(int num)
     {
-        return _marks[num - 1];
+        return marks[num - 1];
     }
 }

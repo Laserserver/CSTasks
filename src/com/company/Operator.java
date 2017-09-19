@@ -6,64 +6,71 @@ import java.util.stream.IntStream;
 
 public class Operator {
 
-    private List<Course> _courses;
-    private Course _selectedCourse;
-    private Group _selectedGroup;
+    private List<Course> courses;
+    private Course selectedCourse;
+    private Group selectedGroup;
     private Scanner s;
+
     public Operator()
     {
-        _courses = new LinkedList<>();
+        courses = new LinkedList<>();
         s = new Scanner(System.in);
     }
 
-    public void GetCourses()
+    public void getCourses()
     {
-        IntStream.range(1, _courses.size() + 1).forEach(
-                num -> System.out.println(_courses.get(num - 1).CourseNum + " курс.")
+        IntStream.range(1, courses.size() + 1).forEach(
+                num -> System.out.println(courses.get(num - 1).getCourseNum() + " курс.")
         );
     }
 
-    public boolean SelectCourse(int num)
+    public int getCourseGroupsSize()
     {
-        if(num <= _courses.size())
+        return selectedCourse.getGroupSize();
+    }
+
+    public boolean selectCourse(int num)
+    {
+        if(num <= courses.size())
         {
-            _selectedCourse = _courses.get(num - 1);
+            selectedCourse = courses.get(num - 1);
             return true;
         }
         System.out.println("Ошибка при выборе курса.");
         return false;
     }
 
-    public void CreateCourse()
+    public void createCourse()
     {
-        _courses.add(new Course(_courses.size()+1));
+        courses.add(new Course(courses.size() + 1));
     }
 
-    public void GetCourseGroups()
+    public void getCourseGroups()
     {
-        _selectedCourse.GetGroupsList();
+        selectedCourse.getGroupsList();
     }
 
-    public boolean SelectGroup(int num)
+    public boolean selectGroup(int num)
     {
-        if(num <= _selectedCourse.GroupCount)
+        if(num > 0 && num <= selectedCourse.getGroupCount())    //Если номер выбираемой группы меньше или равен максимальному номеру группы
         {
-            _selectedGroup = _selectedCourse.SelectGroup(num);
-            return true;
+            selectedGroup = selectedCourse.selectGroup(num);
+            if(selectedGroup != null)
+                return true;                //Специально так, чтобы если получили null, то написать об ошибке.
         }
         System.out.println("Ошибка при выборе группы.");
         return false;
     }
 
-    public void GetGroupStudents()
+    public void getGroupStudents()
     {
-        _selectedGroup.GetList();
+        selectedGroup.getList();
     }
 
-    public Student SelectStudent(int num)
+    public Student selectStudent(int num)
     {
-        if(num > 0 && num <= _selectedGroup.StudentCount)
-            return _selectedGroup.SelectStudent(num);
+        if(num > 0 && num <= selectedGroup.getStudentCount())
+            return selectedGroup.selectStudent(num);
         System.out.println("Неверный выбор.");
         return null;
     }
@@ -72,30 +79,23 @@ public class Operator {
 
     //===================
 
-    public void CreateGroup()
+    public void createGroup()
     {
-        _selectedCourse.CreateGroup();
+        selectedCourse.createGroup();
     }
 
-    public void DeleteGroup(int num)
+    public void deleteGroup(int num)
     {
-        System.out.print("Введите номер удаляемой группы: ");
-        if(!s.hasNextInt())
-        {
-            System.out.println("Еще раз, неверные символы.");
-            s.nextLine();
-            return;
-        }
-        _selectedCourse.DeleteGroup(s.nextInt());
+        selectedCourse.deleteGroup(num);
     }
 
-    public void InsertStudent(String name, String surname)
+    public void insertStudent(String name, String surname)
     {
-        _selectedGroup.InsertStudent(name, surname);
+        selectedGroup.insertStudent(name, surname);
     }
 
-    public void DeleteStudent(int num)
+    public void deleteStudent(int num)
     {
-        _selectedGroup.DeleteStudent(num);
+        selectedGroup.deleteStudent(num);
     }
 }

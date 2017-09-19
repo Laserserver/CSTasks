@@ -7,21 +7,21 @@ public class GroupRedactor extends Redactor {
         super(operator);
     }
 
-    public void Start()
+    public void start()
     {
         System.out.println("РЕДАКТОР КУРСОВ И ГРУПП: ");
         System.out.println("Выберите пункт: ");
         System.out.println("     1. Создать курс.");
         System.out.println("     2. Изменить курс.");
         System.out.println("     3. Выход. ");
-        int option = _Selection();
+        int option = invokeSelection();
         switch (option)
         {
             case 1:
-                _CourseCreate();
+                courseCreate();
                 break;
             case 2:
-                _CourseChange();
+                courseChange();
                 break;
             case 3:
                 break;
@@ -31,93 +31,94 @@ public class GroupRedactor extends Redactor {
         }
     }
 
-    private void _CourseCreate()
+    private void courseCreate()
     {
         System.out.println("СОЗДАНИЕ КУРСА: ");
         System.out.println("    Присутствующие курсы: ");
-        _op.GetCourses();
+        op.getCourses();
         System.out.print("Создать новый? Y\\N >> ");
         String flag = s.next();
         if(flag.toLowerCase().equals("y")){
-            _op.CreateCourse();
+            op.createCourse();
             System.out.println("Добавлен новый курс.");
         }
         else
             System.out.println("Отмена добавления нового курса.");
     }
 
-    private void _CourseChange()
+    private void courseChange()
     {
         System.out.println("ИЗМЕНЕНИЕ КУРСА: ");
-        if(!_SelectCourse())
-            return;
-        else
-            _GroupMenu();
+        if(selectCourse())
+            groupMenu();
     }
 
-    private void _GroupMenu()
+    private void groupMenu()
     {
+        boolean flag = true;
         System.out.println("Изменение курса: ");
-        System.out.println("    Присутствующие группы: ");
-        _op.GetCourseGroups();
-        System.out.println("Выберите операцию:");
-        System.out.println("    1. Создание группы. ");
-        System.out.println("    2. Изменение группы. ");
-        System.out.println("    3. Удаление группы. ");
-        System.out.println("    4. Выход. ");
+        while(flag) {
+            System.out.println("    Присутствующие группы: ");
+            op.getCourseGroups();
+            System.out.println("Выберите операцию:");
+            System.out.println("    1. Создание группы. ");
+            System.out.println("    2. Изменение группы. ");
+            System.out.println("    3. Удаление группы. ");
+            System.out.println("    4. Выход. ");
 
-        int option = _Selection();
-        switch (option)
-        {
-            case 1:
-                _GroupCreate();
-                break;
-            case 2:
-                _GroupChange();
-                break;
-            case 3:
-                _GroupDelete();
-                break;
-            case 4:
-                break;
-            default:
-                System.out.println("Введен неверный символ.");
-                break;
+            int option = invokeSelection();
+            switch (option) {
+                case 1:
+                    groupCreate();
+                    break;
+                case 2:
+                    groupChange();
+                    break;
+                case 3:
+                    groupDelete();
+                    break;
+                case 4:
+                    flag = false;
+                    break;
+                default:
+                    System.out.println("Введен неверный символ.");
+                    break;
+            }
         }
     }
 
-    private void _GroupCreate()
+    private void groupCreate()
     {
         System.out.println("Создание группы для этого курса: ");
         System.out.print("Вы действительно хотите создать группу? Y\\N >> ");
         String flag = s.next();
         if(flag.toLowerCase().equals("y")){
-            _op.CreateGroup();
+            op.createGroup();
             System.out.println("Добавлена новая группа.");
         }
         else
             System.out.println("Отмена добавления новой группы.");
     }
 
-    private void _GroupChange()
+    private void groupChange()
     {
         System.out.println("Изменение группы: ");
-        if(!_SelectGroup())
+        if(!selectGroup())
             return;
         System.out.println("Список студентов: ");
-        _op.GetGroupStudents();
+        op.getGroupStudents();
         System.out.println("    Выберите операцию: ");
         System.out.println("        1. Добавить студента.");
         System.out.println("        2. Удалить студента.");
         System.out.println("        3. Выход.");
-        int option = _Selection();
+        int option = invokeSelection();
         switch (option)
         {
             case 1:
-                _StudentNew();
+                studentNew();
                 break;
             case 2:
-                _StudentDelete();
+                studentDelete();
                 break;
             case 3:
                 break;
@@ -127,7 +128,7 @@ public class GroupRedactor extends Redactor {
         }
     }
 
-    private void _StudentNew()
+    private void studentNew()
     {
         System.out.println("Добавление студента: ");
         System.out.print("Введите имя >> ");
@@ -135,32 +136,31 @@ public class GroupRedactor extends Redactor {
         String name = s.nextLine();
         System.out.print("Введите фамилию >> ");
         String surname = s.nextLine();
-        _op.InsertStudent(name, surname);
+        op.insertStudent(name, surname);
     }
 
-    private void _StudentDelete()
+    private void studentDelete()
     {
         System.out.println("Удаление студента: ");
         System.out.println("Выберите номер студента: ");
-        int option = _Selection();
+        int option = invokeSelection();
         if(option < 1)
-        {
             System.out.println("Неверный номер");
-        }
         else
-            _op.DeleteStudent(option);
+            op.deleteStudent(option);
     }
 
-    private void _GroupDelete()
-    {
+    private void groupDelete() {
         System.out.println("Удаление группы: ");
-        System.out.println("Выберите номер группы: ");
-        int option = _Selection();
-        if(option < 1)
-        {
-            System.out.println("Неверный номер");
+        if (op.getCourseGroupsSize() < 1)
+            System.out.println("Групп нет");
+        else {
+            System.out.println("Выберите номер группы: ");
+            int option = invokeSelection();
+            if (option < 1)
+                System.out.println("Неверный номер");
+            else
+                op.deleteGroup(option);
         }
-        else
-            _op.DeleteGroup(option);
     }
 }

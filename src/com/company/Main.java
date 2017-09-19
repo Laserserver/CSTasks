@@ -33,10 +33,10 @@ public class Main {
             switch (option)
             {
                 case 1:
-                    gr.Start();
+                    gr.start();
                     continue;
                 case 2:
-                    sr.Start();
+                    sr.start();
                     continue;
                 case 3:
                     System.out.println("Выходим.");
