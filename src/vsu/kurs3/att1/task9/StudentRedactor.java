@@ -1,5 +1,7 @@
 package vsu.kurs3.att1.task9;
 
+import vsu.kurs3.att1.task9.structures.Student;
+
 public class StudentRedactor extends Redactor {
 
     private Student student;

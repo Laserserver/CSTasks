@@ -1,4 +1,8 @@
 package vsu.kurs3.att1.task9;
+import vsu.kurs3.att1.task9.structures.Course;
+import vsu.kurs3.att1.task9.structures.Group;
+import vsu.kurs3.att1.task9.structures.Student;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,7 +30,7 @@ public class Operator {
 
     public int getCourseGroupsSize()
     {
-        return selectedCourse.getGroupSize();
+        return selectedCourse.getCourseSize();
     }
 
     public boolean selectCourse(int num)
@@ -47,14 +51,14 @@ public class Operator {
 
     public void getCourseGroups()
     {
-        selectedCourse.getGroupsList();
+        selectedCourse.getGroupsNumsList();
     }
 
     public boolean selectGroup(int num)
     {
         if(num > 0 && num <= selectedCourse.getGroupCount())    //Если номер выбираемой группы меньше или равен максимальному номеру группы
         {
-            selectedGroup = selectedCourse.selectGroup(num);
+            selectedGroup = selectedCourse.getGroupByNum(num);
             if(selectedGroup != null)
                 return true;                //Специально так, чтобы если получили null, то написать об ошибке.
         }
@@ -64,13 +68,13 @@ public class Operator {
 
     public void getGroupStudents()
     {
-        selectedGroup.getList();
+        selectedGroup.getStudentListAsText();
     }
 
     public Student selectStudent(int num)
     {
         if(num > 0 && num <= selectedGroup.getStudentCount())
-            return selectedGroup.selectStudent(num);
+            return selectedGroup.getStudentByName(num);
         System.out.println("Неверный выбор.");
         return null;
     }
@@ -96,6 +100,6 @@ public class Operator {
 
     public void deleteStudent(int num)
     {
-        selectedGroup.deleteStudent(num);
+        selectedGroup.deleteStudentByName(num);
     }
 }

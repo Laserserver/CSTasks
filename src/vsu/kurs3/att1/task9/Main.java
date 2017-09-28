@@ -8,8 +8,7 @@ public class Main {
 	    Menu();
     }
 
-    private static void Menu()
-    {
+    private static void Menu() {
         Scanner s = new Scanner(System.in);
         Operator op = new Operator();
         GroupRedactor gr = new GroupRedactor(op);
