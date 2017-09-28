@@ -1,4 +1,4 @@
-package com.company;
+package vsu.kurs3.att1.task9;
 
 import java.util.stream.IntStream;
 

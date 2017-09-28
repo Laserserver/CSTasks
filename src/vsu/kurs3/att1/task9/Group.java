@@ -1,4 +1,4 @@
-package com.company;
+package vsu.kurs3.att1.task9;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +32,9 @@ public class Group {
 
     public void getList()
     {
+        students.forEach(x -> {
+
+        });
         IntStream.range(1, students.size() + 1).forEach(
                 num -> System.out.println("        " + num + ". " + students.get(num-1).getName() + ' ' + students.get(num-1).getSurname())
         );
