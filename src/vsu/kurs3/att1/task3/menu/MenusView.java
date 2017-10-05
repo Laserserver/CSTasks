@@ -1,7 +1,7 @@
-package vsu.kurs3.att1.task9.menu;
+package vsu.kurs3.att1.task3.menu;
 
-import vsu.kurs3.att1.task9.structures.Course;
-import vsu.kurs3.att1.task9.structures.Student;
+import vsu.kurs3.att1.task3.structures.Course;
+import vsu.kurs3.att1.task3.structures.Student;
 
 import java.util.List;
 import java.util.Scanner;
@@ -48,7 +48,7 @@ public class MenusView {
 
     public int startCourseEditorMenu(Course crs) {
         int option;
-        List<Integer> grs = crs.getGroupsNumsList();
+        List<Integer> grs = crs.getGroupsAsStrings();
         while(true) {
             System.out.println("ИЗМЕНЕНИЕ КУРСА: \n======");
             System.out.println("    Присутствующие группы: ");

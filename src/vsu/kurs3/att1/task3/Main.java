@@ -1,4 +1,4 @@
-package vsu.kurs3.att1.task9;
+package vsu.kurs3.att1.task3;
 
 import java.util.Scanner;
 

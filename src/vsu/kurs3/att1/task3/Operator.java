@@ -1,7 +1,7 @@
-package vsu.kurs3.att1.task9;
-import vsu.kurs3.att1.task9.structures.Course;
-import vsu.kurs3.att1.task9.structures.Group;
-import vsu.kurs3.att1.task9.structures.Student;
+package vsu.kurs3.att1.task3;
+import vsu.kurs3.att1.task3.structures.Course;
+import vsu.kurs3.att1.task3.structures.Group;
+import vsu.kurs3.att1.task3.structures.Student;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -51,7 +51,7 @@ public class Operator {
 
     public void getCourseGroups()
     {
-        selectedCourse.getGroupsNumsList();
+        selectedCourse.getGroupsAsStrings();
     }
 
     public boolean selectGroup(int num)
@@ -74,7 +74,7 @@ public class Operator {
     public Student selectStudent(int num)
     {
         if(num > 0 && num <= selectedGroup.getStudentCount())
-            return selectedGroup.takeStudentByName(num);
+            return selectedGroup.getStudentByName(num);
         System.out.println("Неверный выбор.");
         return null;
     }

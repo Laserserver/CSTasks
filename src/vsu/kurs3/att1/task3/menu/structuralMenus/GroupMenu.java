@@ -1,4 +1,6 @@
-package vsu.kurs3.att1.task9.menu.structuralMenus;
+package vsu.kurs3.att1.task3.menu.structuralMenus;
+
+import vsu.kurs3.att1.task3.menu.specialMenus.menuCore.ParentMenu;
 
 import java.util.List;
 

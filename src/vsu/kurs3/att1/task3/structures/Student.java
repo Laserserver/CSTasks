@@ -1,4 +1,4 @@
-package vsu.kurs3.att1.task9.structures;
+package vsu.kurs3.att1.task3.structures;
 
 public class Student {
 
@@ -6,7 +6,8 @@ public class Student {
     private final String surname;
     private boolean[] marks;
 
-    public String getFullName() {return name + ' ' + surname; }
+    @Override
+    public String toString() {return name + ' ' + surname; }
 
     public Student(String name, String surname){
         this.name = name;

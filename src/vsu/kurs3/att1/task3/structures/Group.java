@@ -1,4 +1,4 @@
-package vsu.kurs3.att1.task9.structures;
+package vsu.kurs3.att1.task3.structures;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,18 +15,10 @@ public class Group {
         this.course = course;
     }
 
-    int getGroupNumber(){
-        return number;
-    }
-
-    public int getStudentCount(){
-        return students.size();
-    }
-
     public List<String> getStudentNamesList()   //Лень делать возвращение строки, список тож сойдет.
     {
         final List<String> rows = new LinkedList<>();
-        students.forEach(x -> rows.add(x.getFullName()));
+        students.forEach(x -> rows.add(x.toString()));
         return rows;
     }
 
@@ -34,11 +26,11 @@ public class Group {
         students.add(st);
     }
 
-    public Student takeStudentByName(String fullName) {
+    public Student getStudentByName(String fullName) {
         Student st;
         for (Student student : students) {
             st = student;
-            if (st.getFullName().equals(fullName))
+            if (st.toString().equals(fullName))
                 return st;
         }
         return null;
@@ -50,5 +42,10 @@ public class Group {
         else {
             return students.remove(st) ? 1 : 0;
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d группа", number);
     }
 }

@@ -1,13 +1,11 @@
-package vsu.kurs3.att1.task9.menu.logics;
-
-import vsu.kurs3.att1.task9.menu.structuralMenus.MainMenu;
+package vsu.kurs3.att1.task3.menu.logics;
 
 public class MainMenuLogic {
 
     private MainMenu mmn;
 
     public MainMenuLogic(){
-        mmn = new MainMenu();
+        //mmn = new MainMenu();
     }
 
     public int startMainMenu(){

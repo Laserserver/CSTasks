@@ -1,28 +1,28 @@
-package vsu.kurs3.att1.task9.menu.structuralMenus;
+package vsu.kurs3.att1.task3.menu.specialMenus.menuCore;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class ParentMenu implements IShowable {
+public class ParentMenu {
 
-    Scanner s;
+    protected Scanner s;
 
-    ParentMenu(){
+    public ParentMenu(){
         s = new Scanner(System.in);
     }
-    public void printListedData(String mainText, String addText, List<Object> lst)
+    public void printListedData(String mainText, List<Object> lst)
     {
         System.out.println(mainText);
-        lst.forEach(x -> System.out.println(String.format("%s %s.", x.toString(), addText)));
+        lst.forEach(x -> System.out.println(x.toString()));
     }
 
-    int startAbstractActionQuestionMenu(String action, String object)   //Опа какая абстракция
+    protected int startAbstractActionQuestionMenu(String action, String object)   //Опа какая абстракция
     {
         System.out.print(String.format("Вы действительно хотите %s %s? Y\\N >> ", action, object));
         return s.next().toLowerCase().equals("y") ? 1 : 0;
     }
 
-    int startNumSelectionMenu()
+    protected int startNumSelectionMenu()
     {
         if(!s.hasNextInt())
         {
@@ -33,8 +33,7 @@ public class ParentMenu implements IShowable {
         return s.nextInt();
     }
 
-    @Override
-    public int showMenu(List<Object> args) {
+    public Object showMenu(List<Object> args) {
         return 0;
     }
 }

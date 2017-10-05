@@ -1,13 +1,13 @@
-package vsu.kurs3.att1.task9.menu;
+package vsu.kurs3.att1.task3.menu;
 
-import vsu.kurs3.att1.task9.menu.enums.ECourseMenus;
-import vsu.kurs3.att1.task9.menu.logics.CourseMenuLogic;
-import vsu.kurs3.att1.task9.menu.logics.MainMenuLogic;
-import vsu.kurs3.att1.task9.menu.structuralMenus.CourseMenu;
-import vsu.kurs3.att1.task9.menu.structuralMenus.GroupMenu;
-import vsu.kurs3.att1.task9.menu.structuralMenus.IShowable;
-import vsu.kurs3.att1.task9.menu.structuralMenus.StudentMenu;
-import vsu.kurs3.att1.task9.structures.Course;
+import vsu.kurs3.att1.task3.menu.enums.ECourseMenus;
+import vsu.kurs3.att1.task3.menu.logics.CourseMenuLogic;
+import vsu.kurs3.att1.task3.menu.logics.MainMenuLogic;
+import vsu.kurs3.att1.task3.menu.specialMenus.menuCore.ParentMenu;
+import vsu.kurs3.att1.task3.menu.structuralMenus.GroupMenu;
+import vsu.kurs3.att1.task3.menu.structuralMenus.StudentMenu;
+import vsu.kurs3.att1.task3.structures.Course;
+import vsu.kurs3.att1.task3.structures.Group;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class MenusLogics {
     private MainMenuLogic mml;
     private List<Course> courses;
 
-    private List<IShowable> menus;
+    private List<ParentMenu> menus;
 
     public MenusLogics(List<Course> courses){
         menus = new LinkedList<>();
@@ -69,17 +69,11 @@ public class MenusLogics {
 
     }
 
-    public void mainMenu(){
-        int option = -1;
-        while(option != 3) {
-            option = mmn.startMainMenu();
-            if(option < 1 || option > 3)
-                continue;
-            switch (option){
-                case 1:
-                    invokeCourseMenu()
-            }
-        }
+    private Course getCourseByNum(int num){
+        return courses.get(num + 1);
     }
 
+    private Group getGroupByNum(Course c, int num){
+
+    }
 }

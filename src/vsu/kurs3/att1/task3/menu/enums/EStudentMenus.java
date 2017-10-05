@@ -1,4 +1,4 @@
-package vsu.kurs3.att1.task9.menu.enums;
+package vsu.kurs3.att1.task3.menu.enums;
 
 public enum EStudentMenus {
     Main,

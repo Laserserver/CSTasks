@@ -1,6 +1,6 @@
-package vsu.kurs3.att1.task9;
+package vsu.kurs3.att1.task3;
 
-import vsu.kurs3.att1.task9.structures.Student;
+import vsu.kurs3.att1.task3.structures.Student;
 
 public class StudentRedactor extends Redactor {
 

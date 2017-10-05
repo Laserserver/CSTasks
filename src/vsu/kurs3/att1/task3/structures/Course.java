@@ -1,22 +1,13 @@
-package vsu.kurs3.att1.task9.structures;
+package vsu.kurs3.att1.task3.structures;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Course extends Object {
 
     private List<Group> groups;
     private int courseNum;
     private int groupCount;
-
-    public int getCourseNum(){
-        return courseNum;
-    }
-
-    public int getCourseSize() {      //Возвращает фактическое количество групп
-        return groups.size();
-    }
 
     public Course(int num) {
         groups = new LinkedList<>();
@@ -27,15 +18,15 @@ public class Course extends Object {
         groups.add(new Group(++groupCount, courseNum));
     }
 
-    public List<Integer> getGroupsNumsList() {
-        final List<Integer> rows = new LinkedList<>();
-        groups.forEach(x -> rows.add(x.getGroupNumber()));
+    public List<String> getGroupsAsStrings() {
+        final List<String> rows = new LinkedList<>();
+        groups.forEach(x -> rows.add(x.toString()));
         return rows;
     }
 
-    public Group takeGroupByNum(int num) {
+    public Group getGroupByName(String name){
         int ptr = 0;
-        while (ptr < groups.size() && groups.get(ptr).getGroupNumber() != num)       //Пока указатель меньше фактического количества
+        while (ptr < groups.size() && !groups.get(ptr).toString().equals(name))       //Пока указатель меньше фактического количества
             ptr++;
         if(ptr == groups.size())        //Если прошлись, но не нашли - бросаем null, метод увидит
             return null;
@@ -52,6 +43,6 @@ public class Course extends Object {
 
     @Override
     public String toString() {
-        return Integer.toString(courseNum);
+        return String.format("%d курс", courseNum);
     }
 }
