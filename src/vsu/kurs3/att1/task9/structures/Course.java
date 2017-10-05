@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Course {
+public class Course extends Object {
 
     private List<Group> groups;
     private int courseNum;
@@ -33,7 +33,7 @@ public class Course {
         return rows;
     }
 
-    public Group getGroupByNum(int num) {
+    public Group takeGroupByNum(int num) {
         int ptr = 0;
         while (ptr < groups.size() && groups.get(ptr).getGroupNumber() != num)       //Пока указатель меньше фактического количества
             ptr++;
@@ -48,5 +48,10 @@ public class Course {
         else {
             return groups.remove(gr) ? 1 : 0;
         }
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(courseNum);
     }
 }

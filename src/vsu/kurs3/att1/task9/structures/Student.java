@@ -6,13 +6,7 @@ public class Student {
     private final String surname;
     private boolean[] marks;
 
-    public String getName(){
-        return name;
-    }
-
-    public String getSurname(){
-        return surname;
-    }
+    public String getFullName() {return name + ' ' + surname; }
 
     public Student(String name, String surname){
         this.name = name;

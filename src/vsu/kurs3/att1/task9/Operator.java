@@ -58,7 +58,7 @@ public class Operator {
     {
         if(num > 0 && num <= selectedCourse.getGroupCount())    //Если номер выбираемой группы меньше или равен максимальному номеру группы
         {
-            selectedGroup = selectedCourse.getGroupByNum(num);
+            selectedGroup = selectedCourse.takeGroupByNum(num);
             if(selectedGroup != null)
                 return true;                //Специально так, чтобы если получили null, то написать об ошибке.
         }
@@ -74,7 +74,7 @@ public class Operator {
     public Student selectStudent(int num)
     {
         if(num > 0 && num <= selectedGroup.getStudentCount())
-            return selectedGroup.getStudentByName(num);
+            return selectedGroup.takeStudentByName(num);
         System.out.println("Неверный выбор.");
         return null;
     }

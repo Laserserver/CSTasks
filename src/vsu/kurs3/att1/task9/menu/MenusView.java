@@ -6,7 +6,7 @@ import vsu.kurs3.att1.task9.structures.Student;
 import java.util.List;
 import java.util.Scanner;
 
-public class Menus {
+public class MenusView {
 
     private Scanner s = new Scanner(System.in);
 
@@ -88,8 +88,8 @@ public class Menus {
 
     public int startGroupEditorMenu(List<String> sts){
         System.out.println("Изменение группы: ");
-        sts.forEach(System.out::println);           //<< предложила идея
         System.out.println("Список студентов: ");
+        sts.forEach(System.out::println);           //<< предложила идея
         int option;
         while (true) {
             System.out.println("    Выберите операцию: ");

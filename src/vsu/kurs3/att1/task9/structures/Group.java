@@ -9,13 +9,13 @@ public class Group {
     private final int number;
     private int course;   //<-- неизвестно, зачем, но из-за задания сделано.
 
-    public Group(int num, int course) {
+    Group(int num, int course) {
         number = num;
         students = new LinkedList<>();
         this.course = course;
     }
 
-    public int getGroupNumber(){
+    int getGroupNumber(){
         return number;
     }
 
@@ -26,7 +26,7 @@ public class Group {
     public List<String> getStudentNamesList()   //Лень делать возвращение строки, список тож сойдет.
     {
         final List<String> rows = new LinkedList<>();
-        students.forEach(x -> rows.add(x.getSurname() + ' '+ x.getName()));
+        students.forEach(x -> rows.add(x.getFullName()));
         return rows;
     }
 
@@ -34,11 +34,11 @@ public class Group {
         students.add(st);
     }
 
-    public Student getStudentByName(String name, String surname) {
+    public Student takeStudentByName(String fullName) {
         Student st;
-        for (int i = 0; i < students.size(); i++) {
-            st = students.get(i);
-            if(st.getName().equals(name) && st.getSurname().equals(surname))
+        for (Student student : students) {
+            st = student;
+            if (st.getFullName().equals(fullName))
                 return st;
         }
         return null;
