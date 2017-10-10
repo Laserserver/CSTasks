@@ -15,10 +15,6 @@ public class CreatorMenu extends ParentMenu {
                 title = "СОЗДАНИЕ КУРСА: \n======";
                 addText = "курсы:";
                 break;
-            case GroupCreateStudentMenu:
-                title = "СОЗДАНИЕ СТУДЕНТА: \n======";
-                addText = "студенты:";
-                break;
             case GroupCreatorMenu:
                 title = "СОЗДАНИЕ ГРУППЫ: \n======";
                 addText = "группы:";

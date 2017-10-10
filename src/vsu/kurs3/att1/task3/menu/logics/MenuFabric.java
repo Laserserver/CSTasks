@@ -1,11 +1,7 @@
 package vsu.kurs3.att1.task3.menu.logics;
 
 import vsu.kurs3.att1.task3.menu.enums.EMenuCode;
-import vsu.kurs3.att1.task3.menu.specialMenus.MainMenu;
-import vsu.kurs3.att1.task3.menu.specialMenus.StringChoiceMenu;
-import vsu.kurs3.att1.task3.menu.specialMenus.CreatorMenu;
-import vsu.kurs3.att1.task3.menu.specialMenus.EditorMenu;
-import vsu.kurs3.att1.task3.menu.specialMenus.SelectorMenu;
+import vsu.kurs3.att1.task3.menu.specialMenus.*;
 import vsu.kurs3.att1.task3.menu.specialMenus.menuCore.ParentMenu;
 
 public class MenuFabric {
@@ -22,20 +18,22 @@ public class MenuFabric {
             case SelectCourseMenu:
             case SelectGroupMenu:
             case SelectStudentMenu:
+            case SetStageMenu:
                 return new SelectorMenu(code);
             case CourseCreatorMenu:
             case GroupCreatorMenu:
-            case GroupCreateStudentMenu:
                 return new CreatorMenu(code);
             case GroupStudentDeleterMenu:
             case GroupDeleterMenu:
             case CourseCreatorChoiceMenu:
             case GroupCreatorChoiceMenu:
+            //case StudentCreatorMenu:
             case MarksChoiceMenu:
                 return new StringChoiceMenu(code);
             case GroupEditorMenu:
-            case CourseEditorMenu:
                 return new EditorMenu(code);
+            case GroupCreateStudentMenu:
+                return new StudentCreatorMenu();
             default:
                 return null;
         }

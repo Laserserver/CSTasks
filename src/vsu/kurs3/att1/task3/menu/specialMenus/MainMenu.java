@@ -2,7 +2,6 @@ package vsu.kurs3.att1.task3.menu.specialMenus;
 
 import vsu.kurs3.att1.task3.menu.enums.EMenuCode;
 import vsu.kurs3.att1.task3.menu.specialMenus.menuCore.ParentMenu;
-import vsu.kurs3.att1.task3.menu.structuralMenus.CourseMenu;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -57,6 +56,7 @@ public class MainMenu extends ParentMenu {
 
     @Override
     public Object showMenu(List<Object> args){  //args не используется
+        System.out.println(title);
         lines.forEach(System.out::println);
         if(optionMax != 0){
             int option = startNumSelectionMenu();

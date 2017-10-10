@@ -1,6 +1,5 @@
 package vsu.kurs3.att1.task3.structures.group;
 
-import vsu.kurs3.att1.task3.structures.group.Group;
 
 import java.util.LinkedList;
 import java.util.List;

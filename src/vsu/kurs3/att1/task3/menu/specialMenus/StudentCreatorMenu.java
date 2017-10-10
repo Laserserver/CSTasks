@@ -15,10 +15,10 @@ public class StudentCreatorMenu extends ParentMenu {
 
     @Override
     public Object showMenu(List<Object> args){
-        System.out.print("Введите имя >> ");
-        s.nextLine();
+        System.out.println("Введите имя >> ");
+        //s.nextLine();
         tuple.add(s.nextLine());
-        System.out.print("Введите фамилию >> ");
+        System.out.println("Введите фамилию >> ");
         tuple.add(s.nextLine());
         return tuple;
     }

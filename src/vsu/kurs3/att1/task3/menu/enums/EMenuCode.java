@@ -11,20 +11,19 @@ public enum EMenuCode {
     CourseCreatorMenu(6),
     CourseCreatorChoiceMenu(7),
     //CourseEditorMenu(8),
-    GroupStudentCreatorMenu(8),
-    GroupMainMenu(9),
-    GroupCreatorMenu(10),
-    GroupCreatorChoiceMenu(11),
-    GroupEditorMenu(12),
-    GroupDeleterMenu(13),
-    GroupCreateStudentMenu(14),
-    GroupStudentDeleterMenu(15),
+    GroupMainMenu(8),
+    GroupCreatorMenu(9),
+    GroupCreatorChoiceMenu(10),
+    GroupEditorMenu(11),
+    GroupDeleterMenu(12),
+    GroupCreateStudentMenu(13),
+    GroupStudentDeleterMenu(14),
 
-    SelectStageMenu(16),
-    MarksChoiceMenu(17),
+    SelectStageMenu(15),
+    MarksChoiceMenu(16),
 
-    StudentCreatorMenu(18),
-    SetStageMenu(19);
+    //StudentCreatorMenu(17),
+    SetStageMenu(17);
 
 
     private final int value;

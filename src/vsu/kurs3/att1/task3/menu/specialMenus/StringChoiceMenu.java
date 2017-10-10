@@ -27,7 +27,7 @@ public class StringChoiceMenu extends ParentMenu {
             case GroupStudentDeleterMenu:
                 text = "Введите удаляемого студента: ";
                 break;
-            case GroupStudentCreatorMenu:
+            case GroupCreateStudentMenu:
                 text += "добавить нового студента?";
         }
     }
@@ -38,7 +38,7 @@ public class StringChoiceMenu extends ParentMenu {
         switch(code){
             case CourseCreatorChoiceMenu:
             case GroupCreatorChoiceMenu:
-            case GroupStudentCreatorMenu:
+            case GroupCreateStudentMenu:
                 return super.startAbstractActionQuestionMenu();
             case MarksChoiceMenu:
             case GroupDeleterMenu:

@@ -21,6 +21,6 @@ public class MarksOperator {
     }
 
     public void changeStage(int stage, boolean mark){
-        marks[stage - 1] = mark;
+        marks[stage] = mark;
     }
 }
