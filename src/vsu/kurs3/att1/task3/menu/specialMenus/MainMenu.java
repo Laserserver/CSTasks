@@ -2,15 +2,17 @@ package vsu.kurs3.att1.task3.menu.specialMenus;
 
 import vsu.kurs3.att1.task3.menu.enums.EMenuCode;
 import vsu.kurs3.att1.task3.menu.specialMenus.menuCore.ParentMenu;
+import vsu.kurs3.att1.task3.menu.structuralMenus.CourseMenu;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class MainMenu extends ParentMenu {
 
-    private String title;
-    private List<String> lines;
-    private int optionMax;
+    protected String title;
+    protected List<String> lines;
+    protected int optionMax;
+
     
     public MainMenu(EMenuCode code){
         lines = new LinkedList<>();
@@ -21,6 +23,7 @@ public class MainMenu extends ParentMenu {
                 lines.add("     1. Редактор курсов и групп");
                 lines.add("     2. Редактор оценок");
                 lines.add("     3. Выход");
+
                 optionMax = 3;
                 break;
             case MarksMainMenu:
@@ -53,15 +56,15 @@ public class MainMenu extends ParentMenu {
     }
 
     @Override
-    public Object showMenu(List<Object> args){
-        lines.forEach(x -> System.out.println(x));
+    public Object showMenu(List<Object> args){  //args не используется
+        lines.forEach(System.out::println);
         if(optionMax != 0){
             int option = startNumSelectionMenu();
             if(option == optionMax)
                 System.out.println("Выходим.");
             return option;
         }
-        return 1;
+        return -1;
     }
     
 }

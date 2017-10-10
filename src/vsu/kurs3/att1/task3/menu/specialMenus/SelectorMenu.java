@@ -9,7 +9,7 @@ public class SelectorMenu extends ParentMenu {
 
     private String text;
 
-    //4 меню-селектора воз
+    //4 меню-селектора выбора
     public SelectorMenu(EMenuCode code){
         switch (code){
             case SelectCourseMenu:
@@ -24,12 +24,17 @@ public class SelectorMenu extends ParentMenu {
             case SelectStageMenu:
                 text = "Выберите этап: ";
                 break;
+            case SetStageMenu:
+                text = "Введите вариант оценки (сдано/не сдано): ";
+                break;
         }
     }
 
     @Override
     public Object showMenu(List<Object> args) {
         System.out.println(text);
+        if(args != null)
+            args.forEach(x->System.out.println(x.toString()));
         return s.nextLine();
     }
 }

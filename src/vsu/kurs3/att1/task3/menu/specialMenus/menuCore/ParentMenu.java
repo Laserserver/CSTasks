@@ -8,6 +8,7 @@ public class ParentMenu {
     protected Scanner s;
 
     public ParentMenu(){
+
         s = new Scanner(System.in);
     }
     public void printListedData(String mainText, List<Object> lst)
@@ -16,9 +17,8 @@ public class ParentMenu {
         lst.forEach(x -> System.out.println(x.toString()));
     }
 
-    protected int startAbstractActionQuestionMenu(String action, String object)   //Опа какая абстракция
+    protected int startAbstractActionQuestionMenu()   //Опа какая абстракция
     {
-        System.out.print(String.format("Вы действительно хотите %s %s? Y\\N >> ", action, object));
         return s.next().toLowerCase().equals("y") ? 1 : 0;
     }
 
@@ -36,4 +36,5 @@ public class ParentMenu {
     public Object showMenu(List<Object> args) {
         return 0;
     }
+
 }

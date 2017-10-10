@@ -1,7 +1,7 @@
 package vsu.kurs3.att1.task3.menu;
 
-import vsu.kurs3.att1.task3.structures.Course;
-import vsu.kurs3.att1.task3.structures.Student;
+import vsu.kurs3.att1.task3.structures.course.Course;
+import vsu.kurs3.att1.task3.structures.student.Student;
 
 import java.util.List;
 import java.util.Scanner;

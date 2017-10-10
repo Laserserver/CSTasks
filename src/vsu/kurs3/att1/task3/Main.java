@@ -1,6 +1,12 @@
 package vsu.kurs3.att1.task3;
 
-import java.util.Scanner;
+import vsu.kurs3.att1.task3.menu.enums.EMenuCode;
+import vsu.kurs3.att1.task3.menu.logics.MenuFabric;
+import vsu.kurs3.att1.task3.menu.specialMenus.menuCore.ParentMenu;
+import vsu.kurs3.att1.task3.structures.course.Course;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
 
@@ -9,42 +15,29 @@ public class Main {
     }
 
     private static void Menu() {
-        Scanner s = new Scanner(System.in);
-        Operator op = new Operator();
-        GroupRedactor gr = new GroupRedactor(op);
-        StudentRedactor sr = new StudentRedactor(op);
+        List<ParentMenu> menus = new LinkedList<>();
+        MenuFabric mf = new MenuFabric();
+        EMenuCode[] codes = EMenuCode.values();
+        List<Course> courses = new LinkedList<>();
+
+        for (EMenuCode code : codes) menus.add(mf.createMenu(code));
+
+        ParentMenu current = menus.get(EMenuCode.MenuMain.getValueOfEnum());
 
         while (true)
         {
-            System.out.println("ИНФОРМАТИКА");
-
-            System.out.println("Выберите пункт: ");
-            System.out.println("     1. Редактор курсов и групп");
-            System.out.println("     2. Редактор оценок");
-            System.out.println("     3. Выход");
-            if(!s.hasNextInt())
-            {
-                System.out.println("Еще раз, не введено число.");
-                s.nextLine();
-                continue;
-            }
-            int option = s.nextInt();
-            switch (option)
-            {
+            int option = (Integer)current.showMenu(new LinkedList<>(courses));
+            switch(option){
                 case 1:
-                    gr.start();
-                    continue;
-                case 2:
-                    sr.start();
-                    continue;
-                case 3:
-                    System.out.println("Выходим.");
+                    //current =
                     break;
-                default:
-                    System.out.println("Еще раз, неверное число: " + option);
-                    continue;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
             }
-            break;
         }
     }
 }

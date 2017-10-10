@@ -10,8 +10,8 @@ public enum EMenuCode {
 
     CourseCreatorMenu(6),
     CourseCreatorChoiceMenu(7),
-    CourseEditorMenu(8),
-
+    //CourseEditorMenu(8),
+    GroupStudentCreatorMenu(8),
     GroupMainMenu(9),
     GroupCreatorMenu(10),
     GroupCreatorChoiceMenu(11),
@@ -21,7 +21,11 @@ public enum EMenuCode {
     GroupStudentDeleterMenu(15),
 
     SelectStageMenu(16),
-    MarksChoiceMenu(17);
+    MarksChoiceMenu(17),
+
+    StudentCreatorMenu(18),
+    SetStageMenu(19);
+
 
     private final int value;
     private static final EMenuCode[] enums = EMenuCode.values();

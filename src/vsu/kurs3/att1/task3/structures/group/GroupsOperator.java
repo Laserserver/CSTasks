@@ -1,27 +1,22 @@
-package vsu.kurs3.att1.task3.structures;
+package vsu.kurs3.att1.task3.structures.group;
+
+import vsu.kurs3.att1.task3.structures.group.Group;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class Course extends Object {
+public class GroupsOperator {
 
     private List<Group> groups;
     private int courseNum;
-    private int groupCount;
 
-    public Course(int num) {
+    public GroupsOperator(int courseNum){
         groups = new LinkedList<>();
-        courseNum = num;
+        this.courseNum = courseNum;
     }
 
-    public void createGroup() {
-        groups.add(new Group(++groupCount, courseNum));
-    }
-
-    public List<String> getGroupsAsStrings() {
-        final List<String> rows = new LinkedList<>();
-        groups.forEach(x -> rows.add(x.toString()));
-        return rows;
+    public void createGroup(){
+        groups.add(new Group(groups.size() + 1, courseNum));
     }
 
     public Group getGroupByName(String name){
@@ -41,8 +36,9 @@ public class Course extends Object {
         }
     }
 
-    @Override
-    public String toString() {
-        return String.format("%d курс", courseNum);
+    public List<String> getGroupNamesAsText(){
+        List<String> str = new LinkedList<>();
+        groups.forEach(x -> str.add(x.toString()));
+        return str;
     }
 }

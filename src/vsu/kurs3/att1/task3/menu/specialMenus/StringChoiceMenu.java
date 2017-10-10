@@ -7,8 +7,10 @@ import java.util.List;
 
 public class StringChoiceMenu extends ParentMenu {
     private String text = "Действительно ли вы хотите ";
+    private EMenuCode code;
 
     public StringChoiceMenu(EMenuCode code) {
+        this.code = code;
         switch (code) {
             case CourseCreatorChoiceMenu:
                 text += "создать курс?";
@@ -25,13 +27,24 @@ public class StringChoiceMenu extends ParentMenu {
             case GroupStudentDeleterMenu:
                 text = "Введите удаляемого студента: ";
                 break;
+            case GroupStudentCreatorMenu:
+                text += "добавить нового студента?";
         }
     }
 
     @Override
     public Object showMenu(List<Object> args) {
         System.out.println(text);
-        return s.nextLine();
+        switch(code){
+            case CourseCreatorChoiceMenu:
+            case GroupCreatorChoiceMenu:
+            case GroupStudentCreatorMenu:
+                return super.startAbstractActionQuestionMenu();
+            case MarksChoiceMenu:
+            case GroupDeleterMenu:
+            case GroupStudentDeleterMenu:
+                return s.nextLine();
+        }
+        return -1;
     }
-
 }

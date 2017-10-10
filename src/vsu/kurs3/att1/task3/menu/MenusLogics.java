@@ -1,13 +1,12 @@
 package vsu.kurs3.att1.task3.menu;
 
-import vsu.kurs3.att1.task3.menu.enums.ECourseMenus;
 import vsu.kurs3.att1.task3.menu.logics.CourseMenuLogic;
 import vsu.kurs3.att1.task3.menu.logics.MainMenuLogic;
 import vsu.kurs3.att1.task3.menu.specialMenus.menuCore.ParentMenu;
 import vsu.kurs3.att1.task3.menu.structuralMenus.GroupMenu;
 import vsu.kurs3.att1.task3.menu.structuralMenus.StudentMenu;
-import vsu.kurs3.att1.task3.structures.Course;
-import vsu.kurs3.att1.task3.structures.Group;
+import vsu.kurs3.att1.task3.structures.course.Course;
+import vsu.kurs3.att1.task3.structures.group.Group;
 
 import java.util.LinkedList;
 import java.util.List;

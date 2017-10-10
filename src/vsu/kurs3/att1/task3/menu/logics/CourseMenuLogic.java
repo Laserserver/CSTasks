@@ -1,8 +1,7 @@
 package vsu.kurs3.att1.task3.menu.logics;
 
-import vsu.kurs3.att1.task3.menu.enums.ECourseMenus;
 import vsu.kurs3.att1.task3.menu.structuralMenus.CourseMenu;
-import vsu.kurs3.att1.task3.structures.Course;
+import vsu.kurs3.att1.task3.structures.course.Course;
 
 import java.util.LinkedList;
 import java.util.List;
