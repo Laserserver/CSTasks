@@ -3,12 +3,12 @@ package vsu.kurs3.att1.task3.structures.course;
 import vsu.kurs3.att1.task3.structures.group.GroupsOperator;
 
 
-public class Course extends Object {
+public class Course {
 
     private int courseNum;
     private GroupsOperator groupsOperator;
 
-    public Course(int num) {
+    Course(int num) {
         courseNum = num;
         groupsOperator = new GroupsOperator(courseNum);
     }

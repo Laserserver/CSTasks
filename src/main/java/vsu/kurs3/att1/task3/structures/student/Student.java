@@ -9,7 +9,7 @@ public class Student {
     @Override
     public String toString() {return name + ' ' + surname; }
 
-    public Student(String name, String surname){
+    Student(String name, String surname){
         this.name = name;
         this.surname = surname;
         marksOperator = new MarksOperator();

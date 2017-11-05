@@ -7,11 +7,11 @@ public class ParentMenu {
 
     protected Scanner s;
 
-    public ParentMenu(){
+    protected ParentMenu(){
 
         s = new Scanner(System.in);
     }
-    public void printListedData(String mainText, List<Object> lst)
+    protected void printListedData(String mainText, List<Object> lst)
     {
         System.out.println(mainText);
         lst.forEach(x -> System.out.println(x.toString()));

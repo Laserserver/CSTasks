@@ -9,7 +9,7 @@ public class Group {
     private int course;   //<-- неизвестно, зачем, но из-за задания сделано.
     private StudentsOperator studentsOperator;
 
-    public Group(int num, int course) {
+    Group(int num, int course) {
         number = num;
         this.course = course;
         studentsOperator = new StudentsOperator(num);
