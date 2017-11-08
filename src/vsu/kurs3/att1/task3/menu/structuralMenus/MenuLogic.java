@@ -1,6 +1,7 @@
 package vsu.kurs3.att1.task3.menu.structuralMenus;
 
 import vsu.kurs3.att1.task3.menu.enums.EMenuCode;
+import vsu.kurs3.att1.task3.menu.logics.MenuFabric;
 import vsu.kurs3.att1.task3.structures.course.Course;
 import vsu.kurs3.att1.task3.structures.course.CoursesOperator;
 import vsu.kurs3.att1.task3.menu.specialMenus.menuCore.ParentMenu;
@@ -16,10 +17,14 @@ import java.util.List;
 public class MenuLogic {
 
     private CoursesOperator coursesOperator;
-    private List<ParentMenu> menus;
-    public MenuLogic(CoursesOperator courseOp, List<ParentMenu> menus){
+
+    MenuFabric mf = new MenuFabric();
+    EMenuCode[] codes = EMenuCode.values();
+    List<ParentMenu> menus = new LinkedList<>();
+
+    public MenuLogic(CoursesOperator courseOp){
         coursesOperator = courseOp;
-        this.menus = menus;
+        for (EMenuCode code : codes) menus.add(mf.createMenu(code));
     }
 
     public boolean start(){
@@ -52,10 +57,10 @@ public class MenuLogic {
         StudentsOperator std = grp.getStudentsOperator();
         pm = menus.get(EMenuCode.SelectStudentMenu.getValueOfEnum());
         st = (String) pm.showMenu(new LinkedList<>(std.getStudentNamesList()));
-        Student stdn = std.getStudentByName(st);
-        if(stdn == null)
+        Student student = std.getStudentByName(st);
+        if(student == null)
             return;
-        MarksOperator mo = stdn.getMarksOperator();
+        MarksOperator mo = student.getMarksOperator();
         pm = menus.get(EMenuCode.SelectStageMenu.getValueOfEnum());
         st = (String) pm.showMenu(new LinkedList<>(mo.getMarksAsText()));
         pm = menus.get(EMenuCode.SetStageMenu.getValueOfEnum());
