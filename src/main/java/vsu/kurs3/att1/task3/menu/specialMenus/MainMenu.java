@@ -8,9 +8,9 @@ import java.util.List;
 
 public class MainMenu extends ParentMenu {
 
-    protected String title;
-    protected List<String> lines;
-    protected int optionMax;
+    String title;
+    List<String> lines;
+    int optionMax;
 
     
     public MainMenu(EMenuCode code){

@@ -6,8 +6,10 @@ import java.util.List;
 public class StudentsOperator {
 
     private final List<Student> students;
+    private int groupNum;
 
-    public StudentsOperator(){
+    public StudentsOperator(int group){
+        groupNum = group;
         students = new LinkedList<>();
     }
 
@@ -28,12 +30,9 @@ public class StudentsOperator {
         return null;
     }
 
-    public int deleteStudent(Student st) {   //-1 писос, 1 удалено, 0 нет такого
-        if(students.size() < 1)
-            return -1;
-        else {
-            return students.remove(st) ? 1 : 0;
-        }
+    public void deleteStudent(Student st) {   //-1 писос, 1 удалено, 0 нет такого
+        if(students.size() > 0)
+            students.remove(st);
     }
 
     public void insertStudent(Student st) {  //Вставляем ЭКЗЕМПЛЯР студента

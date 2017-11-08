@@ -1,10 +1,7 @@
 package vsu.kurs3.att1.task3.structures.group;
 
-import vsu.kurs3.att1.task3.structures.student.Student;
 import vsu.kurs3.att1.task3.structures.student.StudentsOperator;
 
-import java.util.LinkedList;
-import java.util.List;
 
 public class Group {
 
@@ -12,10 +9,10 @@ public class Group {
     private int course;   //<-- неизвестно, зачем, но из-за задания сделано.
     private StudentsOperator studentsOperator;
 
-    public Group(int num, int course) {
+    Group(int num, int course) {
         number = num;
         this.course = course;
-        studentsOperator = new StudentsOperator();
+        studentsOperator = new StudentsOperator(num);
     }
 
     public StudentsOperator getStudentsOperator() {

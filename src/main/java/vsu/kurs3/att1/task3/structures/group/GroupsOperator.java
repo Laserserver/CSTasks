@@ -27,12 +27,9 @@ public class GroupsOperator {
         return groups.get(ptr);
     }
 
-    public int deleteGroup(Group gr) {  //-1 писос, 1 удалено, 0 нет такого
-        if(groups.size() < 1)
-            return -1;
-        else {
-            return groups.remove(gr) ? 1 : 0;
-        }
+    public void deleteGroup(Group gr) {  //-1 писос, 1 удалено, 0 нет такого
+        if(groups.size() > 0)
+            groups.remove(gr);
     }
 
     public List<String> getGroupNamesAsText(){

@@ -6,7 +6,7 @@ import java.util.List;
 public class MarksOperator {
     private boolean[] marks;
 
-    public MarksOperator(){
+    MarksOperator(){
         marks = new boolean[3];
     }
 

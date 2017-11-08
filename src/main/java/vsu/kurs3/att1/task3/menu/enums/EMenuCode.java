@@ -10,7 +10,6 @@ public enum EMenuCode {
 
     CourseCreatorMenu(6),
     CourseCreatorChoiceMenu(7),
-    //CourseEditorMenu(8),
     GroupMainMenu(8),
     GroupCreatorMenu(9),
     GroupCreatorChoiceMenu(10),
