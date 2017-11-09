@@ -16,13 +16,8 @@ public class Main {
     }
 
     private static void Menu() {
-        List<ParentMenu> menus = new LinkedList<>();
-        MenuFabric mf = new MenuFabric();
-        EMenuCode[] codes = EMenuCode.values();
 
-        for (EMenuCode code : codes) menus.add(mf.createMenu(code));
-
-        MenuLogic menuLogic = new MenuLogic(new CoursesOperator(), menus);
+        MenuLogic menuLogic = new MenuLogic(new CoursesOperator());
 
         boolean flag = true;
         while(flag){
