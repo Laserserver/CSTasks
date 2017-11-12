@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
-        <property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=CSTasks;integratedSecurity=true;</property>
+        <property name="connection.url">jdbc:sqlserver://localhost;databaseName=CSTasks;integratedSecurity=true;</property>
         <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="connection.username">root</property>
         <property name="connection.password">sm5t001</property>
