@@ -7,19 +7,12 @@ import java.util.Set;
 @Table(name = "Group")
 public class Group {
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "GroupNum")
     private long number;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "CourseID", referencedColumnName = "ID")
     private Course course;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", targetEntity=Student.class)    //*студенты* мапнуты полем group
     private Set<Student> students;
 
     public Group(){ }
@@ -30,12 +23,19 @@ public class Group {
         this.students = students;
     }
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() { return id; }
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "CourseID", referencedColumnName = "ID")
     public Course getCourse() { return course; }
 
+    @Column(name = "GroupNum")
     public long getNumber() { return number; }
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", targetEntity=Student.class)    //*студенты* мапнуты полем group
     public Set<Student> getStudents() { return students; }
 
 

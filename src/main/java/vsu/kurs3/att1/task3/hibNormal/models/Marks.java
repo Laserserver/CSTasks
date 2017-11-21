@@ -6,23 +6,15 @@ import javax.persistence.*;
 @Table(name = "MarksStudent")
 public class Marks {
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn                   //Означает, что этот первичный ключ является внешним
     private Student student;
 
 
-    @Column(name = "MarkFirst", nullable = false)
     private Boolean markOne;
 
-    @Column(name = "MarkSecond", nullable = false)
     private Boolean markTwo;
 
-    @Column(name = "MarkThird", nullable = false)
     private Boolean markThree;
 
     public Marks(){}
@@ -35,14 +27,22 @@ public class Marks {
     }
 
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() { return id; }
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn                   //Означает, что этот первичный ключ является внешним
     public Student getStudent() { return student; }
 
+    @Column(name = "MarkFirst", nullable = false)
     public Boolean getMarkOne() { return markOne; }
 
+    @Column(name = "MarkSecond", nullable = false)
     public Boolean getMarkTwo() { return markTwo; }
 
+    @Column(name = "MarkThird", nullable = false)
     public Boolean getMarkThree() { return markThree; }
 
 

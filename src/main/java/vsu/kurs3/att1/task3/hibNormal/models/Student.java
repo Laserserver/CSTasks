@@ -5,21 +5,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Student")
 public class Student {
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private long id;
 
-    @Column(name = "GroupID")
     private long groupId;
 
-    @Column(name = "Name", nullable = false)
     private String name;
 
-    @Column(name = "Surname", nullable = false)
     private String surname;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)  //Ссылка на поле student типа Student
     private Marks marks;
 
     public Student() {}
@@ -29,15 +23,21 @@ public class Student {
         this.surname = surname;
         this.marks = marks;
     }
-
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() { return id; }
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)  //Ссылка на поле student типа Student
     public Marks getMarks() { return marks; }
 
+    @Column(name = "Surname", nullable = false)
     public String getSurname() { return surname; }
 
+    @Column(name = "Name", nullable = false)
     public String getName() { return name; }
 
+    @Column(name = "GroupID")
     public long getGroupId() { return groupId; }
 
 

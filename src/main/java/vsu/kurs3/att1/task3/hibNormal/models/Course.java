@@ -7,15 +7,10 @@ import java.util.Set;
 @Table(name = "Course")
 public class Course {
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "CourseNum", nullable = false)
     private long number;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course", targetEntity=Group.class)    //*группы* мапнуты полем course
     private Set<Group> groups;
 
     public Course(){}
@@ -25,10 +20,15 @@ public class Course {
         this.groups = groups;
     }
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId(){ return this.id;}
 
+    @Column(name = "CourseNum", nullable = false)
     public long getNumber() { return number; }
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course", targetEntity=Group.class)    //*группы* мапнуты полем course
     public Set<Group> getGroups() { return groups; }
 
 
