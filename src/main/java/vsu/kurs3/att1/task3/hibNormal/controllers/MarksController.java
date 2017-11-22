@@ -3,7 +3,7 @@ package vsu.kurs3.att1.task3.hibNormal.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vsu.kurs3.att1.task3.hibNormal.models.Marks;
+import vsu.kurs3.att1.task3.hibNormal.models.entities.Marks;
 import vsu.kurs3.att1.task3.hibNormal.services.MarksService;
 
 @RestController

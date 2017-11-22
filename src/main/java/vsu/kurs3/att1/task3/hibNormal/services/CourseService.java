@@ -1,7 +1,7 @@
 package vsu.kurs3.att1.task3.hibNormal.services;
 
 import org.springframework.stereotype.Service;
-import vsu.kurs3.att1.task3.hibNormal.models.Course;
+import vsu.kurs3.att1.task3.hibNormal.models.entities.Course;
 import vsu.kurs3.att1.task3.hibNormal.repositories.CourseRepository;
 
 @Service

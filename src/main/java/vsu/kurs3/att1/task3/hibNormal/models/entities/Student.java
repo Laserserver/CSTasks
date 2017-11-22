@@ -1,4 +1,4 @@
-package vsu.kurs3.att1.task3.hibNormal.models;
+package vsu.kurs3.att1.task3.hibNormal.models.entities;
 
 import javax.persistence.*;
 
@@ -18,11 +18,7 @@ public class Student {
 
     public Student() {}
 
-    public Student(String name, String surname, Marks marks){
-        this.name = name;
-        this.surname = surname;
-        this.marks = marks;
-    }
+
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

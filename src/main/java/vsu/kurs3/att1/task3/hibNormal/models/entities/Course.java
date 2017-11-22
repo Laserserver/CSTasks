@@ -1,4 +1,4 @@
-package vsu.kurs3.att1.task3.hibNormal.models;
+package vsu.kurs3.att1.task3.hibNormal.models.entities;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,10 +15,6 @@ public class Course {
 
     public Course(){}
 
-    public Course(long Num, Set<Group> groups){
-        this.number = Num;
-        this.groups = groups;
-    }
 
     @Id
     @Column(name = "ID")

@@ -1,4 +1,4 @@
-package vsu.kurs3.att1.task3.hibNormal.models;
+package vsu.kurs3.att1.task3.hibNormal.models.entities;
 
 import javax.persistence.*;
 
@@ -19,12 +19,6 @@ public class Marks {
 
     public Marks(){}
 
-    public Marks(Student student, Boolean m1, Boolean m2, Boolean m3){
-        this.student = student;
-        this.markOne = m1;
-        this.markTwo = m2;
-        this.markThree = m3;
-    }
 
 
     @Id
