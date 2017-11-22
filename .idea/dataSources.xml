@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="CSTasks@localhost" uuid="069147a9-f15c-45da-a7b5-9dbec19d401a">
-      <driver-ref>sqlserver.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://localhost\SQLDEV:1433;databaseName=CSTasks;integratedSecutiry=true;</jdbc-url>
-      <driver-properties>
-        <property name="applicationName" value="DataGrip" />
-      </driver-properties>
-    </data-source>
-    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="3a621f3d-ebc9-4e2b-9d2f-0caf67a638a9">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="3be771d6-ac2d-4bf9-975f-403ea9aa5910">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
