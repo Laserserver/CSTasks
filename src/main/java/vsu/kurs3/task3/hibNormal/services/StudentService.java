@@ -1,6 +1,7 @@
 package vsu.kurs3.task3.hibNormal.services;
 
 import org.springframework.stereotype.Service;
+import vsu.kurs3.task3.hibNormal.models.converters.GroupConverter;
 import vsu.kurs3.task3.hibNormal.models.converters.StudentConverter;
 import vsu.kurs3.task3.hibNormal.models.dto.StudentDTO;
 import vsu.kurs3.task3.hibNormal.models.entities.Student;
@@ -45,5 +46,17 @@ public class StudentService {
             students.add(StudentConverter.convertToDTO(st));
         }
         return students;
+    }
+    public Iterable<StudentDTO> getAllStudentsFromGroup(long id) {
+        Iterable<Student> studs =  repository.findAll();
+        Set<StudentDTO> students = new HashSet<>();
+        for (Student st: studs){
+            students.add(StudentConverter.convertToDTO(st));
+        }
+        return students;
+    }
+
+    public StudentDTO getStudentByGroupIdNameSurname(long groupId, String name, String surname){
+        return StudentConverter.convertToDTO(repository.findByGroup_IdAndNameAndSurname(groupId, name, surname));
     }
 }

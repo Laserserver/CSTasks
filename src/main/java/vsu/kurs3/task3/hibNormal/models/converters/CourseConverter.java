@@ -5,9 +5,7 @@ import vsu.kurs3.task3.hibNormal.models.dto.GroupDTO;
 import vsu.kurs3.task3.hibNormal.models.entities.Course;
 import vsu.kurs3.task3.hibNormal.models.entities.Group;
 
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class CourseConverter {
     public static CourseDTO convertToDTO(Course course){
@@ -15,11 +13,11 @@ public class CourseConverter {
         if(course == null)
             return coDto;
         coDto.setNumber(course.getCoursenum());
-        Set<Group> dts = course.getGroups();
+        List<Group> dts = course.getGroups();
         if(dts == null)
             return coDto;
         Iterator iter = dts.iterator();
-        Set<GroupDTO> set = new LinkedHashSet<>();
+        List<GroupDTO> set = new LinkedList<>();
         while(iter.hasNext())
         {
             set.add(GroupConverter.convertToDTO((Group)iter.next()));
@@ -33,14 +31,16 @@ public class CourseConverter {
         if(course == null)
             return co;
         co.setCoursenum(course.getNumber());
-        Set<GroupDTO> dts = course.getGroups();
+        List<GroupDTO> dts = course.getGroups();
         if(dts == null)
             return co;
         Iterator iter = dts.iterator();
-        Set<Group> set = new LinkedHashSet<>();
+        List<Group> set = new LinkedList<>();
         while(iter.hasNext())
         {
-            set.add(GroupConverter.convertToEntity((GroupDTO)iter.next()));
+            GroupDTO gr = (GroupDTO)iter.next();
+            gr.setCourse(course);
+            set.add(GroupConverter.convertToEntity(gr));
         }
         co.setGroups(set);
         return co;

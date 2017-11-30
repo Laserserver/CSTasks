@@ -8,17 +8,19 @@ public class StudentConverter {
         StudentDTO stDto = new StudentDTO();
         stDto.setName(student.getName());
         stDto.setSurname(student.getSurname());
-        stDto.setMarks(MarksConverter.convertToDTO(student.getMarks(), stDto));
-        stDto.setGroup(GroupConverter.convertToDTO(student.getGroup()));
+        stDto.setMarkOne(student.getMarkOne());
+        stDto.setMarkTwo(student.getMarkTwo());
+        stDto.setMarkThree(student.getMarkThree());
         return stDto;
     }
 
     public static Student convertToEntity(StudentDTO student){
         Student stud = new Student();
-        stud.setMarks(MarksConverter.convertToEntity(student.getMarks(), stud));
+        stud.setMarkOne(student.getMarkOne());
+        stud.setMarkTwo(student.getMarkTwo());
+        stud.setMarkThree(student.getMarkThree());
         stud.setName(student.getName());
         stud.setSurname(student.getSurname());
-        stud.setGroup(GroupConverter.convertToEntity(student.getGroup()));
         return stud;
     }
 }

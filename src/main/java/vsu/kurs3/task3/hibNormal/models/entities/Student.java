@@ -3,14 +3,14 @@ package vsu.kurs3.task3.hibNormal.models.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "student")
+@Table(name = "students")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch=FetchType.LAZY, optional = false)
+    @ManyToOne(fetch=FetchType.LAZY, optional = false, cascade=CascadeType.ALL)
     @JoinColumn(name="groupnum")
     private Group group;
 
@@ -20,21 +20,32 @@ public class Student {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)  //Ссылка на поле student типа Student
-    private Marks marks;
+    @Column(name = "mark_first", nullable = false)
+    private Boolean markOne;
+
+    @Column(name = "mark_second", nullable = false)
+    private Boolean markTwo;
+
+    @Column(name = "mark_third", nullable = false)
+    private Boolean markThree;
+
 
     public Student() {}
 
 
     public long getId() { return id; }
 
-    public Marks getMarks() { return marks; }
-
     public String getSurname() { return surname; }
 
     public String getName() { return name; }
 
     public Group getGroup() { return group; }
+
+    public Boolean getMarkOne() { return markOne; }
+
+    public Boolean getMarkTwo() { return markTwo; }
+
+    public Boolean getMarkThree() { return markThree; }
 
 
     public void setId(long id) { this.id = id; }
@@ -45,5 +56,9 @@ public class Student {
 
     public void setSurname(String surname) { this.surname = surname; }
 
-    public void setMarks(Marks marks) { this.marks = marks; }
+    public void setMarkOne(Boolean markOne) { this.markOne = markOne; }
+
+    public void setMarkTwo(Boolean markTwo) { this.markTwo = markTwo; }
+
+    public void setMarkThree(Boolean markThree) { this.markThree = markThree; }
 }

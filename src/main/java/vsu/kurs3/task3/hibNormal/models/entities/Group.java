@@ -1,7 +1,7 @@
 package vsu.kurs3.task3.hibNormal.models.entities;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "groups")
@@ -15,11 +15,11 @@ public class Group {
     private long number;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
-    @JoinColumn(name="coursenum")
+    @JoinColumn(name="courseid")
     private Course course;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")    //*студенты* мапнуты полем group
-    private Set<Student> students;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)    //*студенты* мапнуты полем group
+    private List<Student> students;
 
     public Group(){ }
 
@@ -30,7 +30,7 @@ public class Group {
 
     public long getNumber() { return number; }
 
-    public Set<Student> getStudents() { return students; }
+    public List<Student> getStudents() { return students; }
 
 
     public void setId(long id) { this.id = id; }
@@ -39,5 +39,5 @@ public class Group {
 
     public void setNumber(long number) { this.number = number; }
 
-    public void setStudents(Set<Student> students) { this.students = students; }
+    public void setStudents(List<Student> students) { this.students = students; }
 }

@@ -1,6 +1,6 @@
 package vsu.kurs3.task3.hibNormal.models.dto;
 
-import java.util.Set;
+import java.util.List;
 
 public class GroupDTO {
 
@@ -10,7 +10,7 @@ public class GroupDTO {
 
     private CourseDTO course;
 
-    private Set<StudentDTO> students;
+    private List<StudentDTO> students;
 
     public GroupDTO(){ }
 
@@ -21,14 +21,18 @@ public class GroupDTO {
 
     public long getNumber() { return number; }
 
-    public Set<StudentDTO> getStudents() { return students; }
+    public List<StudentDTO> getStudents() { return students; }
 
 
     public void setId(long id) { this.id = id; }
 
-    public void setCourseId(CourseDTO courseId) { this.course = course; }
+    public void setCourse(CourseDTO course) { this.course = course; }
 
     public void setNumber(long number) { this.number = number; }
 
-    public void setStudents(Set<StudentDTO> students) { this.students = students; }
+    public void setStudents(List<StudentDTO> students) { this.students = students; }
+
+    public void addStudent(StudentDTO student){
+        students.add(student);
+    }
 }

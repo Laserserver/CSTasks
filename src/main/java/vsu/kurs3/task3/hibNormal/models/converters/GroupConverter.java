@@ -6,8 +6,8 @@ import vsu.kurs3.task3.hibNormal.models.entities.Group;
 import vsu.kurs3.task3.hibNormal.models.entities.Student;
 
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class GroupConverter {
@@ -15,11 +15,12 @@ public class GroupConverter {
         GroupDTO grDto = new GroupDTO();
         if(group == null)
             return grDto;
+        grDto.setId(group.getId());
         grDto.setNumber(group.getNumber());
         if(group.getStudents() == null)
             return grDto;
         Iterator iter = group.getStudents().iterator();
-        Set<StudentDTO> set = new LinkedHashSet<>();
+        List<StudentDTO> set = new LinkedList<>();
         while(iter.hasNext())
         {
             set.add(StudentConverter.convertToDTO((Student)iter.next()));
@@ -33,10 +34,11 @@ public class GroupConverter {
         if(group == null)
             return gr;
         gr.setNumber(group.getNumber());
+        //gr.setCourse(CourseConverter.convertToEntity(group.getCourse()));
         if(group.getStudents() == null)
             return gr;
         Iterator iter = group.getStudents().iterator();
-        Set<Student> set = new LinkedHashSet<>();
+        List<Student> set = new LinkedList<>();
         while(iter.hasNext())
         {
             set.add(StudentConverter.convertToEntity((StudentDTO)iter.next()));

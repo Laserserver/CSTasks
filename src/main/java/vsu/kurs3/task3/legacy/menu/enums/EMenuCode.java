@@ -21,7 +21,6 @@ public enum EMenuCode {
     SelectStageMenu(15),
     MarksChoiceMenu(16),
 
-    //StudentCreatorMenu(17),
     SetStageMenu(17);
 
 
