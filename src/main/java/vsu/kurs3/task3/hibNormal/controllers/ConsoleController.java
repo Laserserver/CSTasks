@@ -108,7 +108,10 @@ public class ConsoleController implements CommandLineRunner {
                         }
                         break;
                     case 2:
-                        startGroupSelection(selected);
+                        if(selected.getGroups().size() == 0)
+                            System.out.println("Нет групп.");
+                        else
+                            startGroupSelection(selected);
                         break;
                     case 3:
                         flag = false;
@@ -134,13 +137,13 @@ public class ConsoleController implements CommandLineRunner {
             long courseId = courseSrv.getId(course);
             List<String> lst2 = new LinkedList<>();
             GroupDTO selected = groupSrv.getFromCourseByNum(courseId, option);
-            lst2.add(selected.getNumber() + " курс.");
+            lst2.add(selected.getNumber() + " группа.");
             while(flag){
                 option = (Integer) mf.getMenu(EMenuCodes.JunctionSelectGroupMenu).showMenu(lst2);
                 switch (option){
                     case 1:
                         while(true){
-                            lst = getStudents(courseId, selected);
+                            lst = getStudents(selected);
                             List<Object> tuple = (List<Object>) lmc.showMenu(EMenuCodes.CreateStudentMenu,
                                     lst);
                             List<String> names = (List<String>) tuple.get(0);
@@ -151,20 +154,25 @@ public class ConsoleController implements CommandLineRunner {
                             std.setName(names.get(0));
                             std.setSurname(names.get(1));
                             std.setGroup(selected);
+                            std.setMarkOne(false);
+                            std.setMarkTwo(false);
+                            std.setMarkThree(false);
 
                             selected.addStudent(std);
-                            selected = groupSrv.edit(courseSrv.getId(course), selected);
+                            selected = groupSrv.edit(selected);
                         }
                         break;
                     case 2:
-                        startStudentSelection(courseId, selected);
+                        if(selected.getStudents().size() == 0)
+                            System.out.println("Студентов нет.");
+                        else
+                            startStudentSelection(selected);
                         break;
                     case 3:
-                        int grnum = (int)selected.getNumber();
                         option = (Integer) mf.getMenu(EMenuCodes.DeleteGroupChoiceMenu).showMenu(null);
                         if(option == 0) {
-                            groupSrv.delete(courseId, selected);
-                            course.deleteGroup(grnum);
+                            groupSrv.delete(selected);
+                            course.deleteGroup(selected);
                             course = courseSrv.edit(course);
                             selected = null;
                         }
@@ -181,19 +189,43 @@ public class ConsoleController implements CommandLineRunner {
             System.out.println("Неправильный выбор");
     }
 
-    private void startStudentSelection(long courseId, GroupDTO group){
+    private void startStudentSelection(GroupDTO group){
+        List<String> lst = getStudents(group);
 
-    }
+        List<String> tuple = (List<String>) mf.getMenu(EMenuCodes.SelectStudentMenu).showMenu(
+                lst);
 
+        StudentDTO stud = studSrv.getStudentByGroupIdNameSurname(group.getId(),
+                tuple.get(0), tuple.get(1));
+        lst.set(0, tuple.get(0) + " " + tuple.get(1));
+        if(stud != null) {
+            int option = (Integer) mf.getMenu(EMenuCodes.JunctionSelectStudentMenu).showMenu(lst);
+            boolean flag = true;
+            while (flag)
+                switch (option) {
+                case 1:
+                    lst = new LinkedList<>();
+                    lst.add(stud.getMarkOne().toString());
+                    lst.add(stud.getMarkTwo().toString());
+                    lst.add(stud.getMarkThree().toString());
+                    int stage = (Integer) mf.getMenu(EMenuCodes.AlterStageMenu).showMenu(lst);
+                    stud.changeStage(stage);
+                    stud = studSrv.edit(stud);
+                    break;
+                case 2:
 
-    private void printCourses(){
-        Iterable<CourseDTO> crss = courseSrv.getAll();
-        System.out.println(crss.iterator().hasNext());
-        for (CourseDTO ab: crss) {
-            System.out.printf("%s курс.", ab.getNumber());
-            System.out.println();
+                    flag = false;
+                    break;
+                case 3:
+                    flag = false;
+                    break;
+
+            }
         }
+        else
+            System.out.println("Неправильный выбор студента.");
     }
+
 
     private List<String> getCourses(){
         Iterable<CourseDTO> crss = courseSrv.getAll();
@@ -214,11 +246,11 @@ public class ConsoleController implements CommandLineRunner {
         return lst;
     }
 
-    private List<String> getStudents(long courseId, GroupDTO group){
+    private List<String> getStudents(GroupDTO group){
         List<String> lst = new LinkedList<>();
 
         Iterable<StudentDTO> studs =
-                studSrv.getAllStudentsFromGroup(groupSrv.getGroupId(courseId, group));
+                studSrv.getAllStudentsFromGroup(group.getId());
         if(studs != null){
             for(StudentDTO st: studs)
                 lst.add(st.getName() + " " + st.getSurname());

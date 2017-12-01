@@ -10,8 +10,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch=FetchType.LAZY, optional = false, cascade=CascadeType.ALL)
-    @JoinColumn(name="groupnum")
+    @ManyToOne(fetch=FetchType.LAZY, optional = false)
+    @JoinColumn(name="groupid")
     private Group group;
 
     @Column(name = "name", nullable = false)

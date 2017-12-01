@@ -35,4 +35,9 @@ public class GroupDTO {
     public void addStudent(StudentDTO student){
         students.add(student);
     }
+
+    public void deleteStudent(StudentDTO student){
+        students.remove(student);
+    }
+
 }

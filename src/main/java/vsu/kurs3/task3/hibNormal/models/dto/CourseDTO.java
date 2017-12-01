@@ -1,5 +1,7 @@
 package vsu.kurs3.task3.hibNormal.models.dto;
 
+import vsu.kurs3.task3.hibNormal.models.entities.Group;
+
 import java.util.List;
 
 public class CourseDTO {
@@ -37,5 +39,9 @@ public class CourseDTO {
                 return;
             }
         }
+    }
+
+    public void deleteGroup(GroupDTO group){
+        groups.remove(group);
     }
 }

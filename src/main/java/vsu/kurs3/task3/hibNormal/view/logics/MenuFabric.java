@@ -22,6 +22,9 @@ public class MenuFabric {
         switch (code){
 
             case MenuMain:
+            case JunctionSelectCourseMenu:
+            case JunctionSelectGroupMenu:
+            case JunctionSelectStudentMenu:
                 return new JunctionMenu(code);
             case SelectCourseChoiceMenu:
             case SelectGroupChoiceMenu:
@@ -34,10 +37,10 @@ public class MenuFabric {
             case SelectCourseMenu:
             case SelectGroupMenu:
             case SelectStageMenu:
-            case SelectStudentMenu:
                 return new ListingMenu(code);   // Названо так, потому что выводит список
             case CreateStudentMenu:
             case DeleteStudentMenu:
+            case SelectStudentMenu:
                 return new StudentMenu(code);   // У студентских меню логика посложнее
             case CreateCourseChoiceMenu:
             case CreateGroupChoiceMenu:
@@ -47,10 +50,7 @@ public class MenuFabric {
                 return new ChoiceMenu(code);    // Эти предоставляют выбор 0 или 1
             case AlterStageMenu:
                 return new MarksMenu();         // Это просто число от 1 до 3 должно вернуть
-            case JunctionSelectCourseMenu:
-            case JunctionSelectGroupMenu:
-            case JunctionSelectStudentMenu:
-                return new JunctionMenu(code);
+
         }
         return null;
     }

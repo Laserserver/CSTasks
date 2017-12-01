@@ -47,4 +47,18 @@ public class StudentDTO {
     public void setMarkTwo(Boolean markTwo) { this.markTwo = markTwo; }
 
     public void setMarkThree(Boolean markThree) { this.markThree = markThree; }
+
+    public void changeStage(int stage){
+        switch (stage){
+            case 1:
+                markOne = !markOne;
+                break;
+            case 2:
+                markTwo = !markTwo;
+                break;
+            case 3:
+                markThree = !markThree;
+                break;
+        }
+    }
 }

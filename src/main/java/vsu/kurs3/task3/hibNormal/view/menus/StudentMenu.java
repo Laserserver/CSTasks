@@ -16,6 +16,9 @@ public class StudentMenu extends Menu {
             case CreateStudentMenu:
                 header = "ДОБАВЛЕНИЕ СТУДЕНТА:";
                 break;
+            case SelectStudentMenu:
+                header = "ВЫБОР СТУДЕНТА:";
+                break;
         }
     }
 

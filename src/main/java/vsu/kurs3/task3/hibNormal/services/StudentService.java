@@ -48,7 +48,7 @@ public class StudentService {
         return students;
     }
     public Iterable<StudentDTO> getAllStudentsFromGroup(long id) {
-        Iterable<Student> studs =  repository.findAll();
+        Iterable<Student> studs =  repository.findAllByGroup_IdOrderByName(id);
         Set<StudentDTO> students = new HashSet<>();
         for (Student st: studs){
             students.add(StudentConverter.convertToDTO(st));
@@ -57,6 +57,9 @@ public class StudentService {
     }
 
     public StudentDTO getStudentByGroupIdNameSurname(long groupId, String name, String surname){
-        return StudentConverter.convertToDTO(repository.findByGroup_IdAndNameAndSurname(groupId, name, surname));
+        Student st = repository.findByGroup_IdAndNameAndSurname(groupId, name, surname);
+        if(st == null)
+            return null;
+        return StudentConverter.convertToDTO(st);
     }
 }

@@ -12,6 +12,7 @@ public class CourseConverter {
         CourseDTO coDto = new CourseDTO();
         if(course == null)
             return coDto;
+        coDto.setId(course.getId());
         coDto.setNumber(course.getCoursenum());
         List<Group> dts = course.getGroups();
         if(dts == null)

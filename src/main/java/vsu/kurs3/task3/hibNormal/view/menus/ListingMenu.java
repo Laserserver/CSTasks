@@ -33,10 +33,6 @@ public class ListingMenu extends Menu {
                 header = "ВЫБОР ЭТАПА:";
                 text = "Состояние этапов:";
                 break;
-            case SelectStudentMenu:
-                header = "ВЫБОР СТУДЕНТА:";
-                text = "Присутствующие студенты:";
-                break;
         }
     }
 

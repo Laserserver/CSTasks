@@ -30,25 +30,28 @@ public class GroupService {
         return GroupConverter.convertToDTO(repository.save(grp));
     }
 
-    public GroupDTO edit(long course, GroupDTO group){
-        delete(course, group);
-        add(group);
-        return group;
-    }
-
     public GroupDTO edit(GroupDTO group){
+       /* delete(group);
+        add(group);
+        return get(group.getId());*/
+
         GroupDTO oldGroup = get(group.getId());
         if(oldGroup != null){
-           return GroupConverter.convertToDTO(repository.save(GroupConverter.convertToEntity(group)));
+            Group grp = GroupConverter.convertToEntity(group);
+            List<Student> stds = grp.getStudents();
+            if(stds != null)
+                for(Student st : stds)
+                    st.setGroup(grp);
+            grp.setCourse(repository.findOne(group.getId()).getCourse());
+            return GroupConverter.convertToDTO(repository.save(grp));
         }
         return null;
     }
 
     public void delete(long id) { repository.delete(id); }
 
-    public void delete(long course, GroupDTO group){
-        Group gr = repository.findByCourse_IdAndAndNumber(course, group.getNumber());
-        delete(gr.getId());
+    public void delete(GroupDTO group){
+        delete(group.getId());
     }
 
     public GroupDTO get(long id) {
@@ -75,9 +78,6 @@ public class GroupService {
         return GroupConverter.convertToDTO(repository.findByCourse_IdAndAndNumber(courseId, number));
     }
 
-    public long getGroupId(long course, GroupDTO group){
-        return repository.findByCourse_IdAndAndNumber(course, group.getNumber()).getId();
-    }
 
     public Iterable<GroupDTO> getAllGroupsFromCourseById(long courseId){
         count = 0;
