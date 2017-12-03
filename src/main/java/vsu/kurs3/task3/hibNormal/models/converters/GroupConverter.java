@@ -44,6 +44,7 @@ public class GroupConverter {
             set.add(StudentConverter.convertToEntity((StudentDTO)iter.next()));
         }
         gr.setStudents(set);
+        gr.setId(group.getId());
         return gr;
     }
 }

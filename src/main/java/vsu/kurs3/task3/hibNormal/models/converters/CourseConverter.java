@@ -32,6 +32,7 @@ public class CourseConverter {
         if(course == null)
             return co;
         co.setCoursenum(course.getNumber());
+        co.setId(course.getId());
         List<GroupDTO> dts = course.getGroups();
         if(dts == null)
             return co;

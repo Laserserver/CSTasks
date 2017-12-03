@@ -1,9 +1,6 @@
 package vsu.kurs3.task3.hibNormal.services;
-
 import org.springframework.stereotype.Service;
-import vsu.kurs3.task3.hibNormal.models.converters.CourseConverter;
 import vsu.kurs3.task3.hibNormal.models.converters.GroupConverter;
-import vsu.kurs3.task3.hibNormal.models.dto.CourseDTO;
 import vsu.kurs3.task3.hibNormal.models.dto.GroupDTO;
 import vsu.kurs3.task3.hibNormal.models.entities.Group;
 import vsu.kurs3.task3.hibNormal.models.entities.Student;

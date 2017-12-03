@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import vsu.kurs3.task3.hibNormal.models.converters.CourseConverter;
 import vsu.kurs3.task3.hibNormal.models.dto.CourseDTO;
 import vsu.kurs3.task3.hibNormal.models.dto.GroupDTO;
 import vsu.kurs3.task3.hibNormal.models.dto.StudentDTO;
-import vsu.kurs3.task3.hibNormal.models.entities.Group;
 import vsu.kurs3.task3.hibNormal.services.CourseService;
 import vsu.kurs3.task3.hibNormal.services.GroupService;
 import vsu.kurs3.task3.hibNormal.services.StudentService;
@@ -105,6 +103,8 @@ public class ConsoleController implements CommandLineRunner {
 
                             selected.addGroup(grp);
                             selected = courseSrv.edit(selected);
+                            if (!mf.getMenu(EMenuCodes.AddGroupChoiceMenu).showMenu(null).equals(0))
+                                break;
                         }
                         break;
                     case 2:
@@ -160,6 +160,8 @@ public class ConsoleController implements CommandLineRunner {
 
                             selected.addStudent(std);
                             selected = groupSrv.edit(selected);
+                            if (!mf.getMenu(EMenuCodes.AddStudentChoiceMenu).showMenu(null).equals(0))
+                                break;
                         }
                         break;
                     case 2:
@@ -171,8 +173,8 @@ public class ConsoleController implements CommandLineRunner {
                     case 3:
                         option = (Integer) mf.getMenu(EMenuCodes.DeleteGroupChoiceMenu).showMenu(null);
                         if(option == 0) {
-                            groupSrv.delete(selected);
                             course.deleteGroup(selected);
+                            groupSrv.delete(selected);
                             course = courseSrv.edit(course);
                             selected = null;
                         }
@@ -191,35 +193,46 @@ public class ConsoleController implements CommandLineRunner {
 
     private void startStudentSelection(GroupDTO group){
         List<String> lst = getStudents(group);
-
+        List<String> lst2 = new LinkedList<>();
         List<String> tuple = (List<String>) mf.getMenu(EMenuCodes.SelectStudentMenu).showMenu(
                 lst);
 
         StudentDTO stud = studSrv.getStudentByGroupIdNameSurname(group.getId(),
                 tuple.get(0), tuple.get(1));
-        lst.set(0, tuple.get(0) + " " + tuple.get(1));
+        lst2.add(tuple.get(0) + " " + tuple.get(1));
         if(stud != null) {
-            int option = (Integer) mf.getMenu(EMenuCodes.JunctionSelectStudentMenu).showMenu(lst);
             boolean flag = true;
-            while (flag)
+            while (flag){
+                int option = (Integer) mf.getMenu(EMenuCodes.JunctionSelectStudentMenu).showMenu(lst2);
                 switch (option) {
-                case 1:
-                    lst = new LinkedList<>();
-                    lst.add(stud.getMarkOne().toString());
-                    lst.add(stud.getMarkTwo().toString());
-                    lst.add(stud.getMarkThree().toString());
-                    int stage = (Integer) mf.getMenu(EMenuCodes.AlterStageMenu).showMenu(lst);
-                    stud.changeStage(stage);
-                    stud = studSrv.edit(stud);
+                    case 1:
+                        while(true)
+                        {
+                            lst = new LinkedList<>();
+                            lst.add(stud.getMarkOne().toString());
+                            lst.add(stud.getMarkTwo().toString());
+                            lst.add(stud.getMarkThree().toString());
+                            int stage = (Integer) mf.getMenu(EMenuCodes.AlterStageMenu).showMenu(lst);
+                            if(stage == 0)
+                                break;
+                            stud.changeStage(stage);
+                            stud = studSrv.edit(stud);
+                        }
+                        break;
+                    case 2:
+                        option = (Integer) mf.getMenu(EMenuCodes.DeleteStudentChoiceMenu).showMenu(null);
+                        if(option == 0) {
+                            group.deleteStudent(stud);
+                        studSrv.delete(stud);
+                            group = groupSrv.edit(group);
+                        stud = null;
+                        }
+                        flag = false;
                     break;
-                case 2:
-
-                    flag = false;
+                    case 3:
+                        flag = false;
                     break;
-                case 3:
-                    flag = false;
-                    break;
-
+                }
             }
         }
         else

@@ -37,7 +37,14 @@ public class GroupDTO {
     }
 
     public void deleteStudent(StudentDTO student){
-        students.remove(student);
+        for(int i = 0; i < students.size(); i++){
+            if(students.get(i).getName().equals(student.getName()) &&
+               students.get(i).getSurname().equals(student.getSurname()))
+            {
+                students.remove(i);
+                return;
+            }
+        }
     }
 
 }

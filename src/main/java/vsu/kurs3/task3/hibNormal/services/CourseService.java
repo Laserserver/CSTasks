@@ -32,10 +32,16 @@ public class CourseService {
     }
 
     public CourseDTO edit(CourseDTO course){
-        deleteByNum(course.getNumber());
-        add(course);
-
-        return getByNum(course.getNumber());
+        CourseDTO oldCourse = get(course.getId());
+        if(oldCourse != null){
+            Course crs = CourseConverter.convertToEntity(oldCourse);
+            List<Group> grps = crs.getGroups();
+            if(grps != null)
+                for(Group gr : grps)
+                    gr.setCourse(crs);
+            return CourseConverter.convertToDTO(repository.save(crs));
+        }
+        return null;
     }
 
     public void delete(long id) {
@@ -70,7 +76,7 @@ public class CourseService {
     }
 
     public long getId(CourseDTO course){
-        return repository.findCourseByCoursenumEquals(course.getNumber()).getId();
+        return course.getId();
     }
 
     public int getCount(){

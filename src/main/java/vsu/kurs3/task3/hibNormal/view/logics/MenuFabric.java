@@ -47,6 +47,8 @@ public class MenuFabric {
             case CreateStudentChoiceMenu:
             case DeleteGroupChoiceMenu:
             case DeleteStudentChoiceMenu:
+            case AddGroupChoiceMenu:
+            case AddStudentChoiceMenu:
                 return new ChoiceMenu(code);    // Эти предоставляют выбор 0 или 1
             case AlterStageMenu:
                 return new MarksMenu();         // Это просто число от 1 до 3 должно вернуть

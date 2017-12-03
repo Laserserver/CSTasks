@@ -31,17 +31,13 @@ public class CourseDTO {
         groups.add(group);
     }
 
-    public void deleteGroup(int num){
-        for (int i = 0; i < groups.size(); i++) {
-            if(groups.get(i).getNumber() == num)
+    public void deleteGroup(GroupDTO group){
+        for(int i = 0; i < groups.size(); i++){
+            if(groups.get(i).getNumber() == group.getNumber())
             {
-                groups.remove(groups.get(i));
+                groups.remove(i);
                 return;
             }
         }
-    }
-
-    public void deleteGroup(GroupDTO group){
-        groups.remove(group);
     }
 }

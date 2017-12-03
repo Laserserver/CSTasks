@@ -26,6 +26,7 @@ public class StudentConverter {
         stud.setMarkThree(student.getMarkThree());
         stud.setName(student.getName());
         stud.setSurname(student.getSurname());
+        stud.setId(student.getId());
         return stud;
     }
 }

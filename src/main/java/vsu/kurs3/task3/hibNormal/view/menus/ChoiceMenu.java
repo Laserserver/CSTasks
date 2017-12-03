@@ -24,6 +24,12 @@ public class ChoiceMenu extends Menu {
             case DeleteStudentChoiceMenu:
                 text = "Подтвердите удаление студента:";
                 break;
+            case AddGroupChoiceMenu:
+                text = "Добавить ещё одну группу?";
+                break;
+            case AddStudentChoiceMenu:
+                text = "Добавить ещё одного студента?";
+                break;
         }
     }
 

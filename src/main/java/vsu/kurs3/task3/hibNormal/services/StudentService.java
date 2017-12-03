@@ -24,12 +24,18 @@ public class StudentService {
     public StudentDTO edit(StudentDTO student){
         StudentDTO oldStudent = get(student.getId());
         if(oldStudent != null){
-           return StudentConverter.convertToDTO(repository.save(StudentConverter.convertToEntity(student)));
+            Student st = StudentConverter.convertToEntity(student);
+            st.setGroup(repository.findOne(oldStudent.getId()).getGroup());
+            return StudentConverter.convertToDTO(repository.save(st));
         }
         return null;
     }
 
     public void delete(long id) { repository.delete(id); }
+
+    public void delete(StudentDTO stud){
+        delete(stud.getId());
+    }
 
     public StudentDTO get(long id) {
         StudentDTO student = StudentConverter.convertToDTO(repository.findOne(id));
