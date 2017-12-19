@@ -7,6 +7,7 @@ import vsu.kurs3.task3.hibNormal.models.entities.Course;
 import vsu.kurs3.task3.hibNormal.models.entities.Group;
 import vsu.kurs3.task3.hibNormal.repositories.CourseRepository;
 
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class CourseService {
     public CourseDTO edit(CourseDTO course){
         CourseDTO oldCourse = get(course.getId());
         if(oldCourse != null){
-            Course crs = CourseConverter.convertToEntity(oldCourse);
+            Course crs = CourseConverter.convertToEntity(course);
             List<Group> grps = crs.getGroups();
             if(grps != null)
                 for(Group gr : grps)
@@ -58,11 +59,13 @@ public class CourseService {
         return CourseConverter.convertToDTO(repository.findOne(id));
     }
 
+    @Transactional
     public CourseDTO getByNum(long num){
-        return CourseConverter.convertToDTO(
-                repository.findCourseByCoursenumEquals(num));
+        Course crs = repository.findCourseByCoursenumEquals(num);
+        return CourseConverter.convertToDTO(crs);
     }
 
+    @Transactional
     public Iterable<CourseDTO> getAll() {
         count = 0;
         Iterable<Course> courses = repository.findAll();

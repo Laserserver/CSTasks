@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "groups")
+@Table(name = "groups ")
 public class Group {
 
     @Id
@@ -14,11 +14,11 @@ public class Group {
     @Column(name = "number")
     private long number;
 
-    @ManyToOne(fetch=FetchType.LAZY, optional = false)
+    @ManyToOne(fetch=FetchType.EAGER, optional = false)
     @JoinColumn(name="courseid")
     private Course course;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)    //*студенты* мапнуты полем group
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)    //*студенты* мапнуты полем group
     private List<Student> students;
 
     public Group(){ }

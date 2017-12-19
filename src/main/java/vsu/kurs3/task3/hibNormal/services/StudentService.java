@@ -1,6 +1,7 @@
 package vsu.kurs3.task3.hibNormal.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import vsu.kurs3.task3.hibNormal.models.converters.GroupConverter;
 import vsu.kurs3.task3.hibNormal.models.converters.StudentConverter;
 import vsu.kurs3.task3.hibNormal.models.dto.StudentDTO;
@@ -44,7 +45,7 @@ public class StudentService {
         else
             return null;
     }
-
+    @Transactional
     public Iterable<StudentDTO> getAll() {
         Iterable<Student> studs =  repository.findAll();
         Set<StudentDTO> students = new HashSet<>();

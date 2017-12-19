@@ -24,9 +24,6 @@ public class ChoiceMenu extends Menu {
             case DeleteStudentChoiceMenu:
                 text = "Подтвердите удаление студента:";
                 break;
-            case AddGroupChoiceMenu:
-                text = "Добавить ещё одну группу?";
-                break;
             case AddStudentChoiceMenu:
                 text = "Добавить ещё одного студента?";
                 break;
@@ -37,8 +34,8 @@ public class ChoiceMenu extends Menu {
     public Object showMenu(List<String> strings){
         System.out.println("===============");
         System.out.println(text);
-        System.out.println("Да  - 0");
-        System.out.println("Нет - 1");
+        System.out.println("Да  - 1");
+        System.out.println("Нет - 2");
         return startNumSelectionMenu();
     }
 }

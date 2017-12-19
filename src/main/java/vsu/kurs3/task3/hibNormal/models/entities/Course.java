@@ -14,7 +14,7 @@ public class Course {
     @Column(nullable = false)
     private long coursenum;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)    //*группы* мапнуты полем course
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)    //*группы* мапнуты полем course
     private List<Group> groups;
 
     public Course(){}

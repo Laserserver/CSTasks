@@ -1,7 +1,6 @@
 package vsu.kurs3.task3.hibNormal.models.dto;
 
-import vsu.kurs3.task3.hibNormal.models.entities.Group;
-
+import java.util.LinkedList;
 import java.util.List;
 
 public class CourseDTO {
@@ -12,7 +11,7 @@ public class CourseDTO {
 
     private List<GroupDTO> groups;
 
-    public CourseDTO(){}
+    public CourseDTO(){groups = new LinkedList<>();}
 
     public long getId(){ return this.id;}
 

@@ -24,7 +24,7 @@ public class JunctionMenu extends Menu {
                 text = "Выберите действие:";
                 strings.add("1. Создать группу");
                 strings.add("2. Выбрать группу");
-                strings.add("3. Выход");
+                strings.add("3. Назад к меню");
                 break;
             case JunctionSelectGroupMenu:
                 header = "ВЫБРАНА ГРУППА:";
@@ -32,14 +32,14 @@ public class JunctionMenu extends Menu {
                 strings.add("1. Создать студента");
                 strings.add("2. Выбрать студента");
                 strings.add("3. Удалить группу");
-                strings.add("4. Выход");
+                strings.add("4. Назад к меню курсов");
                 break;
             case JunctionSelectStudentMenu:
                 header = "ВЫБРАН СТУДЕНТ:";
                 text = "Выберите действие:";
                 strings.add("1. Выбрать этап");
                 strings.add("2. Удалить студента");
-                strings.add("3. Выход");
+                strings.add("3. Назад к меню групп");
                 break;
         }
 

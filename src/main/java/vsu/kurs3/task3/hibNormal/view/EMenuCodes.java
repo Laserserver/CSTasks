@@ -39,8 +39,7 @@ public enum EMenuCodes {
     JunctionSelectGroupMenu(21),
     JunctionSelectStudentMenu(22),
 
-    AddStudentChoiceMenu(23),
-    AddGroupChoiceMenu(24);
+    AddStudentChoiceMenu(23);
 
     private final int value;
     private static final EMenuCodes[] enums = EMenuCodes.values();

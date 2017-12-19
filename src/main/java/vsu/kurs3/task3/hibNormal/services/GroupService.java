@@ -1,5 +1,6 @@
 package vsu.kurs3.task3.hibNormal.services;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import vsu.kurs3.task3.hibNormal.models.converters.GroupConverter;
 import vsu.kurs3.task3.hibNormal.models.dto.GroupDTO;
 import vsu.kurs3.task3.hibNormal.models.entities.Group;
@@ -24,7 +25,8 @@ public class GroupService {
         if(stds != null)
             for(Student st : stds)
                 st.setGroup(grp);
-        return GroupConverter.convertToDTO(repository.save(grp));
+        grp = repository.save(grp);
+        return GroupConverter.convertToDTO(grp);
     }
 
     public GroupDTO edit(GroupDTO group){
@@ -47,6 +49,8 @@ public class GroupService {
 
     public void delete(long id) { repository.delete(id); }
 
+
+
     public void delete(GroupDTO group){
         delete(group.getId());
     }
@@ -58,7 +62,7 @@ public class GroupService {
         else
             return null;
     }
-
+    @Transactional
     public Iterable<GroupDTO> getAll() {
         count = 0;
         Iterable<Group> groups = repository.findAllByOrderByNumberAsc();
@@ -72,7 +76,7 @@ public class GroupService {
     }
 
     public GroupDTO getFromCourseByNum(long courseId, long number){
-        return GroupConverter.convertToDTO(repository.findByCourse_IdAndAndNumber(courseId, number));
+        return GroupConverter.convertToDTO(repository.findByCourse_IdAndNumber(courseId, number));
     }
 
 

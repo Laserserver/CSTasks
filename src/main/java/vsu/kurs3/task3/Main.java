@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
 	    //Menu();
         SpringApplication.run(Main.class, args);
+        return;
     }
 
    /* private static void Menu() {

@@ -47,7 +47,6 @@ public class MenuFabric {
             case CreateStudentChoiceMenu:
             case DeleteGroupChoiceMenu:
             case DeleteStudentChoiceMenu:
-            case AddGroupChoiceMenu:
             case AddStudentChoiceMenu:
                 return new ChoiceMenu(code);    // Эти предоставляют выбор 0 или 1
             case AlterStageMenu:

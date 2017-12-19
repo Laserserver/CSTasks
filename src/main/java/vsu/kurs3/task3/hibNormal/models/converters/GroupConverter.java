@@ -35,7 +35,7 @@ public class GroupConverter {
             return gr;
         gr.setNumber(group.getNumber());
         //gr.setCourse(CourseConverter.convertToEntity(group.getCourse()));
-        if(group.getStudents() == null)
+        if(group.getStudents().isEmpty())
             return gr;
         Iterator iter = group.getStudents().iterator();
         List<Student> set = new LinkedList<>();

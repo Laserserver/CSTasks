@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-@Transactional
+
 @Component
 public class ConsoleController implements CommandLineRunner {
     @Autowired
@@ -65,7 +65,7 @@ public class ConsoleController implements CommandLineRunner {
         while(true){
             int option = (Integer) lmc.showMenu(EMenuCodes.CreateCourseMenu,
                     getCourses());
-            if(option == 1)
+            if(option == 2)
                 break;
             int num = courseSrv.getCount() + 1;
             CourseDTO crs = new CourseDTO();
@@ -94,7 +94,7 @@ public class ConsoleController implements CommandLineRunner {
                             lst = getGroups(selected);
                             option = (Integer) lmc.showMenu(EMenuCodes.CreateGroupMenu,
                                     lst);
-                            if (option == 1)
+                            if (option == 2)
                                 break;
                             int num = lst.size() + 1;
                             GroupDTO grp = new GroupDTO();
@@ -103,8 +103,6 @@ public class ConsoleController implements CommandLineRunner {
 
                             selected.addGroup(grp);
                             selected = courseSrv.edit(selected);
-                            if (!mf.getMenu(EMenuCodes.AddGroupChoiceMenu).showMenu(null).equals(0))
-                                break;
                         }
                         break;
                     case 2:
@@ -148,7 +146,7 @@ public class ConsoleController implements CommandLineRunner {
                                     lst);
                             List<String> names = (List<String>) tuple.get(0);
                             option = (Integer) tuple.get(1);
-                            if(option == 1)
+                            if(option == 2)
                                 break;
                             StudentDTO std = new StudentDTO();
                             std.setName(names.get(0));
@@ -160,7 +158,7 @@ public class ConsoleController implements CommandLineRunner {
 
                             selected.addStudent(std);
                             selected = groupSrv.edit(selected);
-                            if (!mf.getMenu(EMenuCodes.AddStudentChoiceMenu).showMenu(null).equals(0))
+                            if (!mf.getMenu(EMenuCodes.AddStudentChoiceMenu).showMenu(null).equals(1))
                                 break;
                         }
                         break;
@@ -172,13 +170,15 @@ public class ConsoleController implements CommandLineRunner {
                         break;
                     case 3:
                         option = (Integer) mf.getMenu(EMenuCodes.DeleteGroupChoiceMenu).showMenu(null);
-                        if(option == 0) {
+                        if(option == 1) {
                             course.deleteGroup(selected);
+                            for(StudentDTO std : selected.getStudents())
+                                studSrv.delete(std);
                             groupSrv.delete(selected);
                             course = courseSrv.edit(course);
                             selected = null;
+                            flag = false;
                         }
-                        flag = false;
                         break;
                     case 4:
                         flag = false;
@@ -221,9 +221,9 @@ public class ConsoleController implements CommandLineRunner {
                         break;
                     case 2:
                         option = (Integer) mf.getMenu(EMenuCodes.DeleteStudentChoiceMenu).showMenu(null);
-                        if(option == 0) {
+                        if(option == 1) {
                             group.deleteStudent(stud);
-                        studSrv.delete(stud);
+                            studSrv.delete(stud);
                             group = groupSrv.edit(group);
                         stud = null;
                         }
