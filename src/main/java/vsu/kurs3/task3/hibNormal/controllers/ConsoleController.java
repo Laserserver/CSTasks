@@ -63,11 +63,12 @@ public class ConsoleController implements CommandLineRunner {
 
     private void startCourseCreation(){
         while(true){
+            List<String> courses = getCourses();
             int option = (Integer) lmc.showMenu(EMenuCodes.CreateCourseMenu,
-                    getCourses());
+                    courses);
             if(option == 2)
                 break;
-            int num = courseSrv.getCount() + 1;
+            long num = courseSrv.getFreeCoursePosition();
             CourseDTO crs = new CourseDTO();
             crs.setNumber(num);
             courseSrv.add(crs);
@@ -120,10 +121,6 @@ public class ConsoleController implements CommandLineRunner {
         else
             System.out.println("Неправильный выбор");
     }
-
-
-
-
 
     private void startGroupSelection(CourseDTO course){
         List<String> lst = getGroups(course);

@@ -1,9 +1,12 @@
 package vsu.kurs3.task3.hibNormal.repositories;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import vsu.kurs3.task3.hibNormal.models.entities.Course;
+
+import java.util.List;
 
 @Repository
 public interface CourseRepository extends CrudRepository<Course, Long> {
@@ -17,5 +20,6 @@ public interface CourseRepository extends CrudRepository<Course, Long> {
     @Transactional
     void delete(Long id);
 
-
+    @Query("select c.coursenum from Course c order by c.coursenum")
+    List<Long> selectCoursenum();
 }

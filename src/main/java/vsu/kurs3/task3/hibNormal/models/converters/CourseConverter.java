@@ -41,9 +41,9 @@ public class CourseConverter {
         List<Group> set = new LinkedList<>();
         while(iter.hasNext())
         {
-            GroupDTO gr = (GroupDTO)iter.next();
-            gr.setCourse(course);
-            set.add(GroupConverter.convertToEntity(gr));
+            Group grp = GroupConverter.convertToEntity((GroupDTO)iter.next());
+            grp.setCourse(co);
+            set.add(grp);
         }
         co.setGroups(set);
         return co;

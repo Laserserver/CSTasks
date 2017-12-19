@@ -34,14 +34,15 @@ public class GroupConverter {
         if(group == null)
             return gr;
         gr.setNumber(group.getNumber());
-        //gr.setCourse(CourseConverter.convertToEntity(group.getCourse()));
         if(group.getStudents().isEmpty())
             return gr;
         Iterator iter = group.getStudents().iterator();
         List<Student> set = new LinkedList<>();
         while(iter.hasNext())
         {
-            set.add(StudentConverter.convertToEntity((StudentDTO)iter.next()));
+            Student std = StudentConverter.convertToEntity((StudentDTO)iter.next());
+            std.setGroup(gr);
+            set.add(std);
         }
         gr.setStudents(set);
         gr.setId(group.getId());

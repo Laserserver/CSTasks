@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Collections;
 
 @Service
 public class CourseService {
@@ -32,14 +31,11 @@ public class CourseService {
         return CourseConverter.convertToDTO(repository.save(crs));
     }
 
+    @Transactional
     public CourseDTO edit(CourseDTO course){
         CourseDTO oldCourse = get(course.getId());
         if(oldCourse != null){
             Course crs = CourseConverter.convertToEntity(course);
-            List<Group> grps = crs.getGroups();
-            if(grps != null)
-                for(Group gr : grps)
-                    gr.setCourse(crs);
             return CourseConverter.convertToDTO(repository.save(crs));
         }
         return null;
@@ -84,5 +80,19 @@ public class CourseService {
 
     public int getCount(){
         return count;
+    }
+
+    public long getFreeCoursePosition(){
+        List<Long> lst = repository.selectCoursenum();
+        if(lst.size() == 1)
+            return lst.get(0) + 1;
+        for (int i = 0; i < lst.size() - 1; i++){
+            long prev = lst.get(i);
+            long next = lst.get(i + 1);
+            if(next - prev != 1){
+                return prev + 1;
+            }
+        }
+        return count + 1;
     }
 }
