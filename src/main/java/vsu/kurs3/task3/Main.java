@@ -9,16 +9,5 @@ public class Main {
     public static void main(String[] args) {
 	    //Menu();
         SpringApplication.run(Main.class, args);
-        return;
     }
-
-   /* private static void Menu() {
-
-        MenuLogic menuLogic = new MenuLogic(new CoursesOperator());
-
-        boolean flag = true;
-        while(flag){
-            flag = menuLogic.start();
-        }
-    }*/
 }

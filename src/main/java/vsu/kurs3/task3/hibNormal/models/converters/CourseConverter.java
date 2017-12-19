@@ -1,6 +1,5 @@
 package vsu.kurs3.task3.hibNormal.models.converters;
 
-import org.springframework.transaction.annotation.Transactional;
 import vsu.kurs3.task3.hibNormal.models.dto.CourseDTO;
 import vsu.kurs3.task3.hibNormal.models.dto.GroupDTO;
 import vsu.kurs3.task3.hibNormal.models.entities.Course;
@@ -22,7 +21,9 @@ public class CourseConverter {
         List<GroupDTO> set = new LinkedList<>();
         while(iter.hasNext())
         {
-            set.add(GroupConverter.convertToDTO((Group)iter.next()));
+            GroupDTO grp = GroupConverter.convertToDTO((Group)iter.next());
+            grp.setCourse(coDto);
+            set.add(grp);
         }
         coDto.setGroups(set);
         return coDto;

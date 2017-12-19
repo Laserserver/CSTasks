@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vsu.kurs3.task3.hibNormal.models.dto.StudentDTO;
-import vsu.kurs3.task3.hibNormal.services.StudentService;
+import vsu.kurs3.task3.hibNormal.models.services.StudentService;
 
 @RestController
 @RequestMapping("/api/student")

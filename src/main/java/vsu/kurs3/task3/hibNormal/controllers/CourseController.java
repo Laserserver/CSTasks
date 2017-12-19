@@ -1,12 +1,13 @@
 package vsu.kurs3.task3.hibNormal.controllers;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import vsu.kurs3.task3.hibNormal.models.dto.CourseDTO;
-import vsu.kurs3.task3.hibNormal.services.CourseService;
+import vsu.kurs3.task3.hibNormal.models.services.CourseService;
 
-@RestController
+@Controller
 @RequestMapping("/api/course")
 public class CourseController {
 
@@ -16,28 +17,22 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) {
-        courseService.delete(id);
+    @GetMapping("/{name}")
+    public @ResponseBody Iterable<String> get(@PathVariable String name) {
+        return courseService.getGroupsNamesByName(name);
     }
 
-    @GetMapping("/{id}")
-    public @ResponseBody ResponseEntity<CourseDTO> get(@PathVariable long id) {
-        CourseDTO course = courseService.get(id);
-        if (course != null) {
-            return new ResponseEntity<>(course, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @RequestMapping(method = RequestMethod.GET)
+    public String test(@RequestParam(value="name", required=false) String name, Model model) {
+        Iterable<String> strs = courseService.getCourses();
+        model.addAttribute("messages", strs);
+        return "test";
     }
 
-    @GetMapping
-    public @ResponseBody Iterable<CourseDTO> getAll() {
-        return courseService.getAll();
-    }
-
-    @PostMapping
-    public @ResponseBody CourseDTO post(@RequestBody CourseDTO course) {
-         return courseService.add(course);
+    @RequestMapping(method = RequestMethod.POST)
+    public @ResponseBody ModelAndView post(@RequestParam(value="name", required=false) String name, Model model) {
+        courseService.addNewCourse();
+        return new ModelAndView(test(name, model));
     }
 
     @PutMapping

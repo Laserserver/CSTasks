@@ -7,18 +7,16 @@ import org.springframework.stereotype.Component;
 import vsu.kurs3.task3.hibNormal.models.dto.CourseDTO;
 import vsu.kurs3.task3.hibNormal.models.dto.GroupDTO;
 import vsu.kurs3.task3.hibNormal.models.dto.StudentDTO;
-import vsu.kurs3.task3.hibNormal.services.CourseService;
-import vsu.kurs3.task3.hibNormal.services.GroupService;
-import vsu.kurs3.task3.hibNormal.services.StudentService;
-import vsu.kurs3.task3.hibNormal.view.EMenuCodes;
-import vsu.kurs3.task3.hibNormal.view.controllers.ListingMenuController;
-import vsu.kurs3.task3.hibNormal.view.logics.MenuFabric;
-import vsu.kurs3.task3.hibNormal.view.menus.Menu;
+import vsu.kurs3.task3.hibNormal.models.services.CourseService;
+import vsu.kurs3.task3.hibNormal.models.services.GroupService;
+import vsu.kurs3.task3.hibNormal.models.services.StudentService;
+import vsu.kurs3.task3.hibNormal.view.console.EMenuCodes;
+import vsu.kurs3.task3.hibNormal.view.console.controllers.ListingMenuController;
+import vsu.kurs3.task3.hibNormal.view.console.logics.MenuFabric;
+import vsu.kurs3.task3.hibNormal.view.console.menus.Menu;
 
-import javax.transaction.Transactional;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 
 @Component
@@ -30,16 +28,12 @@ public class ConsoleController implements CommandLineRunner {
     @Autowired
     public StudentService studSrv;
 
-
-    private Scanner in = new Scanner(System.in);
-
     private ListingMenuController lmc;
     private MenuFabric mf;
 
     public ConsoleController(){
         mf = new MenuFabric();
         lmc = new ListingMenuController(mf.getMenusList());
-
     }
 
 
@@ -63,22 +57,19 @@ public class ConsoleController implements CommandLineRunner {
 
     private void startCourseCreation(){
         while(true){
-            List<String> courses = getCourses();
+            List<String> courses = courseSrv.getCourses();
             int option = (Integer) lmc.showMenu(EMenuCodes.CreateCourseMenu,
                     courses);
             if(option == 2)
                 break;
-            long num = courseSrv.getFreeCoursePosition();
-            CourseDTO crs = new CourseDTO();
-            crs.setNumber(num);
-            courseSrv.add(crs);
+            long num = courseSrv.addNewCourse();
             System.out.printf("Добавлен %s курс.\n", num);
         }
     }
 
     private void startCourseSelection(){
         String text = (String) lmc.showMenu(EMenuCodes.SelectCourseMenu,
-                getCourses());
+                courseSrv.getCourses());
         int option = Integer.parseInt(text.replaceAll("[\\D]", ""));
         if(option <= courseSrv.getCount() && option > 0){
             CourseDTO selected = courseSrv.getByNum(option);
@@ -92,7 +83,7 @@ public class ConsoleController implements CommandLineRunner {
                 switch (option) {
                     case 1:
                         while (true) {
-                            lst = getGroups(selected);
+                            lst = groupSrv.getGroups(selected);
                             option = (Integer) lmc.showMenu(EMenuCodes.CreateGroupMenu,
                                     lst);
                             if (option == 2)
@@ -123,7 +114,7 @@ public class ConsoleController implements CommandLineRunner {
     }
 
     private void startGroupSelection(CourseDTO course){
-        List<String> lst = getGroups(course);
+        List<String> lst = groupSrv.getGroups(course);
         String groupText = (String) lmc.showMenu(EMenuCodes.SelectGroupMenu,
                 lst);
         int option = Integer.parseInt(groupText.replaceAll("[\\D]", ""));
@@ -138,7 +129,7 @@ public class ConsoleController implements CommandLineRunner {
                 switch (option){
                     case 1:
                         while(true){
-                            lst = getStudents(selected);
+                            lst = studSrv.getStudents(selected);
                             List<Object> tuple = (List<Object>) lmc.showMenu(EMenuCodes.CreateStudentMenu,
                                     lst);
                             List<String> names = (List<String>) tuple.get(0);
@@ -189,7 +180,7 @@ public class ConsoleController implements CommandLineRunner {
     }
 
     private void startStudentSelection(GroupDTO group){
-        List<String> lst = getStudents(group);
+        List<String> lst = studSrv.getStudents(group);
         List<String> lst2 = new LinkedList<>();
         List<String> tuple = (List<String>) mf.getMenu(EMenuCodes.SelectStudentMenu).showMenu(
                 lst);
@@ -234,38 +225,5 @@ public class ConsoleController implements CommandLineRunner {
         }
         else
             System.out.println("Неправильный выбор студента.");
-    }
-
-
-    private List<String> getCourses(){
-        Iterable<CourseDTO> crss = courseSrv.getAll();
-        List<String> courses = new LinkedList<>();
-        for (CourseDTO ab: crss) {
-            courses.add(ab.getNumber() + " курс.");
-        }
-        return courses;
-    }
-
-    private List<String> getGroups(CourseDTO course){
-        List<String> lst = new LinkedList<>();
-
-        Iterable<GroupDTO> groups = groupSrv.getAllGroupsFromCourseById(courseSrv.getId(course));
-        if(groups != null)
-            for(GroupDTO gr: groups)
-                lst.add(gr.getNumber() + " группа.");
-        return lst;
-    }
-
-    private List<String> getStudents(GroupDTO group){
-        List<String> lst = new LinkedList<>();
-
-        Iterable<StudentDTO> studs =
-                studSrv.getAllStudentsFromGroup(group.getId());
-        if(studs != null){
-            for(StudentDTO st: studs)
-                lst.add(st.getName() + " " + st.getSurname());
-        }
-
-        return lst;
     }
 }

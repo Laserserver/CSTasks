@@ -23,7 +23,9 @@ public class GroupConverter {
         List<StudentDTO> set = new LinkedList<>();
         while(iter.hasNext())
         {
-            set.add(StudentConverter.convertToDTO((Student)iter.next()));
+            StudentDTO std = StudentConverter.convertToDTO((Student)iter.next());
+            std.setGroup(grDto);
+            set.add(std);
         }
         grDto.setStudents(set);
         return grDto;

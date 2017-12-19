@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/lists.css}" rel="stylesheet" href="../static/css/lists.css"
+          type="text/css" media="all"/>
+    <script>
+
+    </script>
+</head>
+<body>
+<div id="selectors">
+    <h2>Курсы</h2>
+    <div class="selectors_container">
+        <form action="/api/course" method="get">
+            <div th:each="message:${messages}" class="element">
+                <input type="button" th:value="${message}"  th:onclick="'location.href = api/course/'+${message.trim()}+';'"/>
+            </div>
+        </form>
+    </div>
+    <div>
+        <form action="/api/course" method="post" onsubmit="return confirm('Are you sure you want to submit?');">
+            <button>Добавить новый</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
