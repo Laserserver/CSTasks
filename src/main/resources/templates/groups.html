@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/lists.css}" rel="stylesheet" href="../static/css/lists.css"
+          type="text/css" media="all"/>
+
+</head>
+<body>
+    <div id="selectors">
+        <h2>Группы</h2>
+        <div class="selectors_container">
+            <div th:each="message:${messages}" class="element">
+                <input type="button" th:value="${message}"  th:onclick="'window.location.href = window.location.href + \'/'+${message}+'\''"/>
+            </div>
+        </div>
+        <div>
+            <form action="/" method="post" onsubmit="return confirm('Добавить новую группу?');">
+                <button>Добавить новый</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

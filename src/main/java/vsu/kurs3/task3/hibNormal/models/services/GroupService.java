@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 import vsu.kurs3.task3.hibNormal.models.converters.GroupConverter;
 import vsu.kurs3.task3.hibNormal.models.dto.CourseDTO;
 import vsu.kurs3.task3.hibNormal.models.dto.GroupDTO;
+import vsu.kurs3.task3.hibNormal.models.dto.StudentDTO;
 import vsu.kurs3.task3.hibNormal.models.entities.Group;
 import vsu.kurs3.task3.hibNormal.models.entities.Student;
 import vsu.kurs3.task3.hibNormal.models.repositories.GroupRepository;
@@ -104,6 +105,18 @@ public class GroupService {
 
     public int getCount(){
         return count;
+    }
+
+    public List<String> getStudentsByCourseAndGroup(CourseDTO course, String group){
+        List<String> lst = new LinkedList<>();
+        long num = Long.parseLong(group.replaceAll("[\\D]", ""));
+        GroupDTO grp = getFromCourseByNum(course.getId(), num);
+        Iterable<StudentDTO> iter = grp.getStudents();
+        if(iter != null){
+            for (StudentDTO std : iter)
+                lst.add(std.getName() + ' ' + std.getSurname());
+        }
+        return lst;
     }
 
 
