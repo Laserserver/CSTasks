@@ -9,16 +9,11 @@
 </head>
 <body>
 <div id="selectors">
-    <h2>Студенты</h2>
+    <h2>Этапы</h2>
     <div class="selectors_container">
         <div th:each="message:${messages}" class="element">
-            <input type="button" th:value="${message}"  th:onclick="'window.location.href = window.location.href + \'/student/'+${message}+'\''"/>
+            <input type="button" th:value="${message}"  th:onclick="'window.location.href = window.location.href + \'/stage/'+${message}+'\''"/>
         </div>
-    </div>
-    <div>
-        <form action="/api/course" method="post" onsubmit="return confirm('Добавить нового студента?');">
-            <button>Добавить новый</button>
-        </form>
     </div>
 </div>
 </body>

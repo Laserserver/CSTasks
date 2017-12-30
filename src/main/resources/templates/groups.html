@@ -12,12 +12,12 @@
         <h2>Группы</h2>
         <div class="selectors_container">
             <div th:each="message:${messages}" class="element">
-                <input type="button" th:value="${message}"  th:onclick="'window.location.href = window.location.href + \'/'+${message}+'\''"/>
+                <input type="button" th:value="${message}"  th:onclick="'window.location.href = window.location.href + \'/group/'+${message}+'\''"/>
             </div>
         </div>
         <div>
             <form action="/" method="post" onsubmit="return confirm('Добавить новую группу?');">
-                <button>Добавить новый</button>
+                <button>Добавить новую</button>
             </form>
         </div>
     </div>

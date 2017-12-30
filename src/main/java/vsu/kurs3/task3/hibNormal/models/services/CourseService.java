@@ -59,8 +59,18 @@ public class CourseService {
     }
 
     public CourseDTO getByName(String name){
-        long num = Long.parseLong(name.replaceAll("[\\D]", ""));
+        String temp = name.replaceAll("[\\D]", "");
+        if(temp.equals(""))
+            return null;
+        long num = Long.parseLong(temp);
         return getByNum(num);
+    }
+
+    public long getNumByName(String name){
+        String temp = name.replaceAll("[\\D]", "");
+        if(temp.equals(""))
+            return -1;
+        return Long.parseLong(temp);
     }
 
     public long addNewCourse(){

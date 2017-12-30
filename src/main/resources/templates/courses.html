@@ -12,7 +12,7 @@
         <h2>Курсы</h2>
         <div class="selectors_container">
             <div th:each="message:${messages}" class="element">
-                <input type="button" th:value="${message}"  th:onclick="'window.location.href = \''+${message}+'\''"/>
+                <input type="button" th:value="${message}"  th:onclick="'window.location.href = \'course/'+${message}+'\''"/>
             </div>
         </div>
         <div>

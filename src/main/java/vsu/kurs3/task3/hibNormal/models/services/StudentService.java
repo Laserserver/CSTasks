@@ -72,6 +72,32 @@ public class StudentService {
         return StudentConverter.convertToDTO(st);
     }
 
+    public StudentDTO getStudentByGroupIdNameSurname(long groupId, String fullname){
+        String[] arr = fullname.split("\\s+");
+        Student st = repository.findByGroup_IdAndNameAndSurname(groupId, arr[0], arr[1]);
+        if(st == null)
+            return null;
+        return StudentConverter.convertToDTO(st);
+    }
+
+    public List<String> getMarksByName(long groupId, String fullname){
+        StudentDTO std = getStudentByGroupIdNameSurname(groupId, fullname);
+        LinkedList<String> str = new LinkedList<>();
+        str.add("1 этап: " + (std.getMarkOne() ? "сдано" : "не сдано"));
+        str.add("2 этап: " + (std.getMarkTwo() ? "сдано" : "не сдано"));
+        str.add("3 этап: " + (std.getMarkThree() ? "сдано" : "не сдано"));
+
+        return str;
+    }
+
+    public void changeStage(StudentDTO std, String stage){
+        String temp = stage.replaceAll("[\\D]", "");
+        if(temp.equals(""))
+            return;
+        int num = Integer.parseInt(temp);
+        std.changeStage(num);
+        edit(std);
+    }
 
     public List<String> getStudents(GroupDTO group){
         List<String> lst = new LinkedList<>();
